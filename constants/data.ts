@@ -1,4 +1,6 @@
 import { NavItem } from "@/types";
+export const ITEMS_PER_PAGE = 10
+
 
 export type User = {
   id: number;
@@ -37,40 +39,10 @@ export const navItems: NavItem[] = [
     subItems: false,
   },
   {
-    title: "Admins",
-    href: "/dashboard/admins",
+    title: "security",
+    href: "/dashboard/security",
     icon: "admin",
-    label: "admins",
+    label: "security",
     subItems: false,
-  },
-  {
-    title: "Users",
-    href: "/dashboard/nurses",
-    icon: "patients",
-    label: "users",
-    subItems: true,
-
-    children: [
-      {
-        title: "Patients",
-        href: "/dashboard/patients",
-        label: "patients",
-      },
-      {
-        title: "Doctors",
-        href: "/dashboard/doctors",
-        label: "doctors",
-      },
-      {
-        title: "Pharmacies",
-        href: "/dashboard/pharmacies",
-        label: "pharmacies",
-      },
-      {
-        title: "Nurses",
-        href: "/dashboard/nurses",
-        label: "nurses",
-      },
-    ],
   },
 ];

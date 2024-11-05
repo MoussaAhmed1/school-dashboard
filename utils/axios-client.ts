@@ -3,6 +3,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 export interface Params {
   page: number;
   limit: number;
+  role?: string;
   status?: string;
   filters?: string;
   otherfilters?: string[];
