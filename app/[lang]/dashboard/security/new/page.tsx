@@ -1,8 +1,6 @@
-import { fetchUsers } from "@/actions/users/users-actions";
 import { getDictionary } from "@/app/[lang]/messages";
 import BreadCrumb from "@/components/breadcrumb";
 import { UserForm } from "@/components/forms/users-forms/create-users/add-edit-user";
-import { IUser, Role } from "@/types/users";
 import React from "react";
 
 
@@ -11,18 +9,6 @@ export default async function Page({ params, searchParams }: {
     [key: string]: string | string[] | undefined;
   };
 }) {
-  let res;
-
-    const search =
-      typeof searchParams?.search === "string" ? searchParams?.search : "";
-     res = await fetchUsers({
-      page: 1,
-      limit: 100,
-      role: "SCHOOL",
-      filters: search,
-    });
-  
-  const schools: IUser[] = res?.data?.data || []
   const { navigation, shared } = await getDictionary(params?.lang)
   const breadcrumbItems = [
     { title: navigation.security, link: `dashboard/security` },
