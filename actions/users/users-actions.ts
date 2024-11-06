@@ -41,10 +41,13 @@ export const fetchUsers = async ({
   }
 };
 
-export const AddUser = async (formData: FormData,role:"parents" | "drivers" | "schools" |"security"): Promise<any> => {
+export const AddSecurity = async (formData: FormData,role:"security"): Promise<any> => {
     const lang = cookies().get("Language")?.value;
+    
     try {
+      const schoolId = cookies().get("school_id")?.value;
       const accessToken = cookies().get("access_token")?.value;
+      formData.set("school_id", schoolId ?? "");
       await axiosInstance.post(endpoints.users.register, formData, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -53,7 +56,7 @@ export const AddUser = async (formData: FormData,role:"parents" | "drivers" | "s
         },
       });
   
-      revalidatePath(`/dashboard/${role}`);
+      revalidatePath(`/dashboard/security`);
     } catch (error) {
       return {
         error: getErrorMessage(error),

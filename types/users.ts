@@ -1,32 +1,33 @@
 export interface ILogedUser {
-  id: string
-  account: string
-  avatar: string
-  username: string
-  email: string
-  email_verified_at: any
-  phone: string
-  phone_verified_at: any
-  birth_date: string
-  gender: string
-  language: string
-  fcm_token: any
-  access_token: string
+  id: string;
+  account: string;
+  avatar: string;
+  username: string;
+  email: string;
+  email_verified_at: any;
+  phone: string;
+  phone_verified_at: any;
+  birth_date: string;
+  gender: string;
+  school_id: string;
+  language: string;
+  fcm_token: any;
+  access_token: string;
 }
 
 export interface IUser {
-  id: string
-  name: string
-  email: string
-  avatar?: string
-  created_at: string
-  school?: School
+  id: string;
+  name: string;
+  email: string;
+  avatar?: string;
+  created_at: string;
+  school?: School;
 }
 
 export interface School {
-  id: string
-  name: string
-  avatar: string
+  id: string;
+  name: string;
+  avatar: string;
 }
 
 export interface AccountProfile {
@@ -59,11 +60,11 @@ export interface ClientAddtionalInfo {
 }
 
 export enum Role {
-  "parents"="PARENT",
-  "drivers"="DRIVER",
-  "schools"="SCHOOL",
-  "security"="SECURITY",
-  "admins"="ADMIN"
+  "parents" = "PARENT",
+  "drivers" = "DRIVER",
+  "schools" = "SCHOOL",
+  "security" = "SECURITY",
+  "admins" = "ADMIN",
 }
 
 export interface FamilyMember {
@@ -94,8 +95,7 @@ enum Kinship {
   UncleAunt = "UncleAunt",
   NieceNephew = "NieceNephew",
   Cousin = "Cousin",
-  Other = "Other"
-  
+  Other = "Other",
 }
 
 export default Kinship;

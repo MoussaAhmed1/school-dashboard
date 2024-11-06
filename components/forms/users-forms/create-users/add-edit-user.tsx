@@ -22,7 +22,7 @@ import UserSchema from "./userSchema";
 
 import { toFormData } from "axios";
 import AvatarPreview from "@/components/shared/AvatarPreview";
-import { AddUser } from "@/actions/users/users-actions";
+import { AddSecurity } from "@/actions/users/users-actions";
 import { useTranslations } from "next-intl";
 import { IUser, Role } from "@/types/users";
 export type UserFormValues = z.infer<typeof UserSchema>;
@@ -30,13 +30,11 @@ export type UserFormValues = z.infer<typeof UserSchema>;
 interface UserFormProps {
   initialData?: UserFormValues;
   id?: string;
-  schools?: IUser[];
 }
 
 export const UserForm: React.FC<UserFormProps> = ({
   initialData,
   id,
-  schools,
 }) => {
   const pathname = usePathname();
   const [currentLang] = useState(pathname?.includes("/ar") ? "ar" : "en");
@@ -74,7 +72,7 @@ export const UserForm: React.FC<UserFormProps> = ({
     setLoading(true);
     const formData = new FormData();
     toFormData(data, formData);
-    const res = await AddUser(formData, "security");
+    const res = await AddSecurity(formData, "security");
 
     if (res?.error) {
       toast({

@@ -75,20 +75,17 @@ export const getErrorMessage = (error: unknown): string => {
 };
 
 export const endpoints = {
-  doctors: {
-    fetch: "/doctor",
-    accept: "/doctor/accept",
-    register:"/auth/register/doctor",
-    updateProfile:"/additional-info/update-profile",
-  },
   users: {
     fetch: "/user",
-    updateProfile:"/additional-info/client/info",
-    register:"/auth/register/client"
-    
+    register:"/auth/register",
+  },
+  watches:{
+    fetch:"/watch/get-all-IMEI",
+    create:"/watch/insert",
+    history_request:"/watch/get-admin-requests",
   },
   admins: {
-    fetch: "/user",
+    fetch: "user",
     register:"/auth/register/admin"
     
   },
