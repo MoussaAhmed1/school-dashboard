@@ -23,12 +23,49 @@ export interface IUser {
   created_at: string;
   school?: School;
 }
+export interface IStudent {
+  id: string
+  created_at: string
+  updated_at: string
+  deleted_at: any
+  parent_id: string
+  phone: string
+  driver_id: string
+  name: string
+  gender: string
+  birth_date: any
+  avatar: string
+  school_id: string
+  school: School
+  driver: Driver
+  parent: Parent
+}
 
 export interface School {
-  id: string;
-  name: string;
-  avatar: string;
+  id: string
+  name: string
+  avatar: string
 }
+
+export interface Driver {
+  id: string
+  name: string
+  email: string
+  avatar: string
+  created_at: string
+  school: any
+}
+
+export interface Parent {
+  id: string
+  name: string
+  email: string
+  avatar: string
+  created_at: string
+  school: any
+}
+
+
 
 export interface AccountProfile {
   premessions: string[];

@@ -11,7 +11,7 @@ import axiosInstance, {
 } from "../../utils/axios-client";
 import { ITEMS_PER_PAGE } from "@/constants/data";
 
-export const fetchUsers = async ({
+export const fetchSecurity = async ({
   page = 1,
   limit = ITEMS_PER_PAGE,
   role,
@@ -27,6 +27,32 @@ export const fetchUsers = async ({
         limit,
         filters:`roles=${role}`,
         sortBy: "created_at=desc",
+      },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Accept-Language": lang,
+      },
+    });
+    return res;
+  } catch (error: any) {
+    return {
+      error: getErrorMessage(error),
+    };
+  }
+};
+
+export const fetchStudents = async ({
+  page = 1,
+  limit = ITEMS_PER_PAGE,
+  filters,
+}: Params): Promise<any> => {
+  const lang = cookies().get("Language")?.value;
+  const accessToken = cookies().get("access_token")?.value;
+  try {
+    const res = await axiosInstance.get(endpoints.users.fetchStudents, {
+      params: {
+        page,
+        limit,
       },
       headers: {
         Authorization: `Bearer ${accessToken}`,

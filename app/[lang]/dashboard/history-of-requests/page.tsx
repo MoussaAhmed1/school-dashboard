@@ -1,14 +1,14 @@
-import { fetchSecurity } from "@/actions/users/users-actions";
+import { fetchRequests } from "@/actions/requests/requests-history-actions";
 import { getDictionary } from "@/app/[lang]/messages";
 import BreadCrumb from "@/components/breadcrumb";
 import { SharedTable } from "@/components/shared/table/Shared-table";
-import { columns } from "@/components/tables/users-tables/security/columns";
+import { columns } from "@/components/tables/history-request/columns";
 import { buttonVariants } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { ITEMS_PER_PAGE } from "@/constants/data";
 import { cn } from "@/lib/utils";
-import {  IUser, Role } from "@/types/users";
+import {  HistoryOfRequests } from "@/types/watches/requests";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 
@@ -20,22 +20,23 @@ type paramsProps = {
   params:{ lang:"ar"|"en"}
 };
 
+
 export default async function page({ searchParams,params }: paramsProps) {
+
   const page = Number(searchParams.page) || 1;
   const limit = Number(searchParams.limit) || ITEMS_PER_PAGE;
   const search =
   typeof searchParams?.search === "string" ? searchParams?.search : "";
-  const res = await fetchSecurity({
+  const res = await fetchRequests({
     page,
     limit,
-    role: Role.security,
     filters: search,
   });
-  const totalUsers = res?.data?.meta?.total || 0; //1000
-  const pageCount = Math.ceil(totalUsers / limit);
-  const users: IUser[] = res?.data?.data || [];
-  const {navigation,shared} = await getDictionary(params?.lang)
-  const breadcrumbItems = [{ title: navigation.security, link: `/dashboard/security` }];
+  const totalRequests = res?.data?.meta?.total || 0; //1000
+  const pageCount = Math.ceil(totalRequests / limit);
+  const requests: HistoryOfRequests[] = res?.data?.data || [];
+  const {navigation} = await getDictionary(params?.lang)
+  const breadcrumbItems = [{ title: navigation.historyOfRequests, link: `/dashboard/history-of-requests` }];
   return (
     <>
       <div className="flex-1 space-y-4  p-4 md:p-8 pt-6 ">
@@ -43,23 +44,17 @@ export default async function page({ searchParams,params }: paramsProps) {
 
         <div className="flex items-start justify-between">
           <Heading
-            title={`${navigation.security} (${totalUsers})`}
+            title={`${navigation.historyOfRequests} (${totalRequests})`}
           />
-          <Link
-            href={`/${params?.lang}/dashboard/security/new`}
-            className={cn(buttonVariants({ variant: "default" }))}
-          >
-            <Plus className="ltr:mx-1 rtl:ml-2 h-4 w-4" />{shared.add_new}
-          </Link>
         </div>
         <Separator />
 
         <SharedTable
-          searchKey="security"
+          searchKey={'history-of-requests'}
           pageNo={page}
           columns={columns}
-          totalitems={totalUsers}
-          data={users as unknown as IUser[]}
+          totalitems={totalRequests}
+          data={requests as unknown as HistoryOfRequests[]}
           pageCount={pageCount}
         >
         </SharedTable>

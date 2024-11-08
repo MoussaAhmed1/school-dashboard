@@ -2,50 +2,27 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { CellAction } from "./cell-action";
-import { HistoryOfRequests } from "@/types/watches/requests";
+import { IStudent } from "@/types/users";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
-import { formatCreatedAtDateAsDateTime, getCustomNameKeyLang } from "@/utils/helperFunctions";
 
-export const columns: ColumnDef<HistoryOfRequests>[] = [
+export const columns: ColumnDef<IStudent>[] = [
   {
-    accessorKey: "user",
-    header:"user",
+    accessorKey: "name",
+    header:"name",
     cell: ({ row }) => (<div className="flex items-center gap-3">
       <Avatar className="w-10 h-10">
         <AvatarImage
-          src={row?.original?.user?.avatar ?? ""}
-          alt={row?.original?.user?.name ?? ""}
+          src={row?.original?.avatar ?? ""}
+          alt={row?.original?.name ?? ""}
         />
-        <AvatarFallback>{row?.original?.user?.name[0]}</AvatarFallback>
-      </Avatar>
-      <div className="flex flex-col">
-        <p >
-          {row?.original?.user?.name ?? ""}
-        </p>
-        <p >
-          {row?.original?.is_parent ? `(${getCustomNameKeyLang("Parent","والد")})`:`(${getCustomNameKeyLang("Driver","سائق")})`}
-        </p>
-      </div>
-    </div>),
-    enableHiding: true,
-  },
-  {
-    accessorKey: "student",
-    header:"student",
-    cell: ({ row }) => (<div className="flex items-center gap-3">
-      <Avatar className="w-10 h-10">
-        <AvatarImage
-          src={row?.original?.watch_user?.avatar ?? ""}
-          alt={row?.original?.watch_user?.name ?? ""}
-        />
-        <AvatarFallback>{row?.original?.watch_user?.name[0]}</AvatarFallback>
+        <AvatarFallback>{row?.original?.name[0]}</AvatarFallback>
       </Avatar>
       <p >
-        {row?.original?.watch_user?.name}
+        {row?.original?.name}
       </p>
     </div>),
-    enableHiding: true,
+    enableHiding: false,
   },
   {
     accessorKey: "parent",
@@ -86,17 +63,9 @@ export const columns: ColumnDef<HistoryOfRequests>[] = [
     enableHiding: true,
   },
   {
-    accessorKey: "status",
-    header:"status",
-  },
-  {
-    accessorKey: "createdAt",
-    header: "createdAt",
-    cell: ({ row }) => <div className="flex items-center gap-3">
-      <p>
-        {formatCreatedAtDateAsDateTime(row?.original?.created_at)}
-      </p>
-    </div>
+    accessorKey: "phone",
+    header: "phone",
+    cell: ({ row }) => <p className="rtl:text-right text-left" dir="ltr">{row?.original?.phone}</p> 
   },
   {
     id: "actions",

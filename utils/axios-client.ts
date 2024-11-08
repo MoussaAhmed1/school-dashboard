@@ -77,58 +77,21 @@ export const getErrorMessage = (error: unknown): string => {
 export const endpoints = {
   users: {
     fetch: "/user",
+    fetchStudents: "/watch/get-school-users",
     register:"/auth/register",
   },
   watches:{
     fetch:"/watch/get-all-IMEI",
     create:"/watch/insert",
-    history_request:"/watch/get-admin-requests",
+    history_request:"/watch/get-school-users-requests",
   },
   admins: {
     fetch: "user",
     register:"/auth/register/admin"
     
   },
-  nurse_orders: {
-    fetch: "/nurse/order",
-    cancleRequest: "/nurse/admin/cancel/order",
-  },
-  reservations: {
-    fetch: "/reservation",
-    acceptCancleRequest: "/reservation",
-    cancleRequest: "/reservation/admin-cancel",
-  },
-  pharmacy: {
-    fetch: "/pharmacy",
-    order: "/pharmacy/order",
-    categories: "/pharmacy/categories",
-    drugs: "/pharmacy/drugs",
-    accept: "/pharmacy/accept",
-    register:"/auth/register/pharmacy"
-  },
   suggestions: {
     fetch: "/suggestions-complaints",
-  },
-  addetionalInfo: {
-    specializations: "/additional-info/specializations",
-    profile: "/additional-info/profile",
-    statictics: "/additional-info/statictics",
-  },
-  nurses: {
-    fetch: "/nurse",
-    accept: "/nurse/accept",
-    register:"/auth/register/nurse",
-    reviews:"/nurse/reviews"
-  },
-  packages: {
-    fetch: "/package",
-    pharmacy:"/package/pharmacy"
-  },
-  banar: {
-    fetch: "/banar",
-  },
-  pharmacies: {
-    fetch: "/pharmacy",
   },
   notification: {
     send: "/notification/send-to-all",
@@ -138,9 +101,7 @@ export const endpoints = {
     root: "/static-page",
     termsConditions: "/static-page/TERMS_AND_CONDITIONS",
     aboutUs: "/static-page/ABOUT_US",
-    ContactUs: "/Contact-us",
-    Commission:"/settings?type=COMMISSION",
-    PharmacyOrder:"/settings?type=PHARMACY_ORDER_NUMBER"
+    ContactUs: "/contact-us",
   },
   faq: {
     fetch: "/faq",
