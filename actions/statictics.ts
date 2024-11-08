@@ -13,7 +13,7 @@ export const fetchStatictics = async ({
   const accessToken = cookies().get("access_token")?.value;
 
   try {
-    const res = await axiosInstance.get(endpoints.addetionalInfo.statictics, {
+    const res = await axiosInstance.get("/----------------statistics", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Accept-Language": lang,
