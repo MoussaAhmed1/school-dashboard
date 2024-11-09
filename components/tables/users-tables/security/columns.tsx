@@ -29,6 +29,11 @@ export const columns: ColumnDef<IUser>[] = [
     header: "email",
   },
   {
+    accessorKey: "phone",
+    header: "phone",
+    cell: ({ row }) => <p className="rtl:text-right text-left" dir="ltr">{row?.original?.phone}</p> 
+  },
+  {
     id: "actions",
     cell: ({ row }) => <CellAction data={row.original} />,
   },

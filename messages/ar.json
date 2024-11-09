@@ -95,6 +95,7 @@
     "endDate": "تاريخ الانتهاء",
     "status": "الحالة",
     "title": "العنوان",
+    "text": "النص",
     "description": "الوصف",
     "arabicTitle": "العنوان بالعربية",
     "englishTitle": "العنوان بالإنجليزية",
@@ -346,7 +347,10 @@
       "editSocialLink": "تعديل الرابط الاجتماعي",
       "createSocialLink": "إنشاء رابط اجتماعي",
       "socialLinkUpdated": "تم تحديث الرابط الاجتماعي.",
-      "socialLinkCreated": "تم إنشاء الرابط الاجتماعي."
+      "socialLinkCreated": "تم إنشاء الرابط الاجتماعي.",
+      "editUser": "تعديل المستخدم",
+      "viewUser": "عرض المستخدم"
+
     },
     "users": {
       "Admins": "المديرون",
@@ -435,7 +439,10 @@
       "ownerInfo": "معلومات المالك",
       "logout": "تسجيل خروج",
       "school": "المدرسة",
-      "selectSchool": "حدد المدرسة"
+      "selectSchool": "حدد المدرسة",
+      "editSecurity": "تعديل مسئول الامن",
+      "viewSecurity": "عرض مسئول الامن"
+
     }
   },
   "auth": {

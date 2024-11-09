@@ -79,6 +79,8 @@ export const endpoints = {
     fetch: "/user",
     fetchStudents: "/watch/get-school-users",
     register:"/auth/register",
+    delete:"/user/delete",
+    update:"/user/update-profile",
   },
   watches:{
     fetch:"/watch/get-all-IMEI",

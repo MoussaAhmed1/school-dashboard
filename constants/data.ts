@@ -81,14 +81,14 @@ export const navItems: NavItem[] = [
     subItems: true,
     children: [
       {
-        title: "Contact us",
-        href: "/dashboard/settings/contact-us",
-        label:"contact_us"
-      },
-      {
         title: "About Us",
         href: "/dashboard/settings/about-us",
         label:"about_us"
+      },
+      {
+        title: "Contact us",
+        href: "/dashboard/settings/contact-us",
+        label:"contact_us"
       },
       {
         title: "FAQ",

@@ -55,7 +55,7 @@ export const authOptions = {
       }
       if (user) {
         token.username = user.data?.username;
-        token.name = user.data?.username;
+        token.name = user.data?.name;
         token.email = user.data?.email;
         token.phone = user.data?.phone;
         token.gender = user.data?.gender;
@@ -63,16 +63,9 @@ export const authOptions = {
         token.image = user.data?.avatar;
         token.birth_date = user.data?.birth_date;
         token.id = user.data?.id;
-        token.school_id = user.data?.school_id;
         token.accessToken = user.data?.access_token;
 
         cookies().set("access_token", user.data?.access_token, {
-          path: "/",
-          httpOnly: true,
-          sameSite: "strict",
-          secure: true,
-        });
-        cookies().set("school_id", user.data?.school_id, {
           path: "/",
           httpOnly: true,
           sameSite: "strict",
@@ -87,11 +80,12 @@ export const authOptions = {
       session.user = { ...token };
       if (newSession) {
         session.user.name =
-          newSession.data?.username;
+          newSession.data?.name;
         session.user.email = newSession.email;
         session.user.image = newSession.avatar;
         session.user.phone = newSession.phone;
         session.user.gender = newSession.gender;
+        session.user.birth_date = newSession.birth_date;
       }
       return session;
     },

@@ -7,20 +7,16 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { IStudent } from "@/types/users";
-import { Edit, MoreHorizontal, Trash, Eye } from "lucide-react";
+import { Notification } from "@/types/notifications";
+import { Eye, MoreHorizontal } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Cookie from 'js-cookie';
-import { removeUser } from "@/actions/users/users-actions";
 import { useTranslations } from "next-intl";
-import Approve from "@/components/shared/table/Approve";
-
 interface CellActionProps {
-  data: IStudent;
-  toBeVerified?: boolean;
+  data:  Notification;
 }
 
-export const CellAction: React.FC<CellActionProps> = ({ data, toBeVerified = false }) => {
+export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const router = useRouter();
   const currentLang = Cookie.get("Language") ?? "en";
  const t = useTranslations("tableActions");
@@ -36,25 +32,12 @@ export const CellAction: React.FC<CellActionProps> = ({ data, toBeVerified = fal
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>{t("actions")}</DropdownMenuLabel>
           <DropdownMenuItem
-            onClick={() => router.push(`/${currentLang}/dashboard/doctors/${data.id}`)}
+            onClick={() => router.push(`/${currentLang}/dashboard/notifications/${data.id}`)}
           >
             <Eye className="mx-1 h-4 w-4"/> {t("view")}
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => router.push(`/${currentLang}/dashboard/doctors/${data?.id}/${data?.id}/edit`)}
-          >
-             <Edit className="mx-1 h-4 w-4" /> {t("update")}
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-          <Approve successMessage="Deleted Successfully" title="Delete User"  method={removeUser} revalidateData="/dashboard/students" id={data?.id} >
-              <div className="flex">
-                <Trash className="mx-1 h-4 w-4" /> {t("delete")}
-              </div>
-            </Approve>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>
   );
 };
-

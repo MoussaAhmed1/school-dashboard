@@ -94,7 +94,7 @@ export const removeUser = async ({id,revalidateData}:{id:string,revalidateData?:
     const lang = cookies().get("Language")?.value;
     try {
       const accessToken = cookies().get("access_token")?.value;
-      await axiosInstance.delete(endpoints.admins.register, {
+      await axiosInstance.delete(endpoints.users.delete, {
         params: {
           id
         },
@@ -105,10 +105,55 @@ export const removeUser = async ({id,revalidateData}:{id:string,revalidateData?:
         },
       });
   
-      revalidatePath("/dashboard/admins");
+      revalidatePath("/dashboard/security");
       if (revalidateData) {
         revalidatePath(revalidateData);
       }
+    } catch (error) {
+      return {
+        error: getErrorMessage(error),
+      };
+    }
+  };
+
+
+  export const UpdateUser = async (formData: FormData,role:"security",id?:string): Promise<any> => {
+    const lang = cookies().get("Language")?.value;
+    try {
+      const accessToken = cookies().get("access_token")?.value;
+      await axiosInstance.put(endpoints.users.update, formData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Accept-Language": lang,
+          "Content-Type": "multipart/form-data",
+        },
+        params: {
+          id
+        }
+      });
+      if (role) {
+        revalidatePath(`/dashboard/${role}`);
+      }
+    } catch (error) {
+      return {
+        error: getErrorMessage(error),
+      };
+    }
+  };
+
+export const UpdateAdminProfile = async (formData: FormData): Promise<any> => {
+    const lang = cookies().get("Language")?.value;
+    try {
+      const accessToken = cookies().get("access_token")?.value;
+     const res = await axiosInstance.put(endpoints.users.update, formData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Accept-Language": lang,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+        revalidatePath(`/dashboard/profile`);
+        return res?.data?.data;
     } catch (error) {
       return {
         error: getErrorMessage(error),

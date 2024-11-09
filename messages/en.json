@@ -89,6 +89,7 @@
     "endDate": "End Date",
     "status": "Status",
     "title": "Title",
+    "text": "Text",
     "description": "Description",
     "arabicTitle": "Arabic Title",
     "englishTitle": "English Title",
@@ -340,7 +341,11 @@
       "editSocialLink": "Edit Social Link",
       "createSocialLink": "Create Social Link",
       "socialLinkUpdated": "Social Link updated.",
-      "socialLinkCreated": "Social Link created."
+      "socialLinkCreated": "Social Link created.",
+      "editSecurity": "Edit Security",
+      "viewUser": "View User",
+      "editUser": "Edit User"
+
     },
     "users": {
       "Admins": "Admins",
@@ -457,7 +462,11 @@
       "ownerInfo": "Owner Info",
       "logout": "Logout",
       "school": "School",
-      "selectSchool": "Select School"
+      "selectSchool": "Select School",
+      "editUser": "Edit User",
+      "editSecurity": "Edit Security",
+      "viewSecurity": "View Security"
+
     }
   },
   "auth": {
