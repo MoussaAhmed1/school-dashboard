@@ -34,7 +34,7 @@ interface UserFormProps {
   id?: string;
   schools?: IUser[];
   readOnly?: boolean;
-  _role?: "parents" | "drivers" | "schools" | "security";
+  _role?:  "security";
   closeDailog?: () => void
 }
 

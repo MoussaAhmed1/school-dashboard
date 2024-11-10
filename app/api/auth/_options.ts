@@ -71,7 +71,12 @@ export const authOptions = {
           sameSite: "strict",
           secure: true,
         });
-
+        cookies().set("school_id", user.data?.school_id, {
+          path: "/",
+          httpOnly: true,
+          sameSite: "strict",
+          secure: true,
+        });
       }
       return token;
     },
