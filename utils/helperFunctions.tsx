@@ -110,3 +110,10 @@ export const arrFromQuery = (query: string | null) =>
 export const capitalizeString = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
+
+export function maskCode(code: number): string {
+  const codeStr = code.toString();
+  const firstTwoDigits = codeStr.slice(0, 3);
+  const mask = '*'.repeat(codeStr.length - 3);
+  return firstTwoDigits + mask;
+}

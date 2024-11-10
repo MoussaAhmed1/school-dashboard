@@ -467,6 +467,24 @@
       "editSecurity": "Edit Security",
       "viewSecurity": "View Security"
 
+    },
+    "requestDetails": {
+      "title": "Request Details",
+      "status": "Status",
+      "code": "Request Code",
+      "createdAt": "Created At",
+      "school": "School",
+      "updatedAt": "Updated At",
+      "parentDetails": "Parent Details",
+      "userDetails": "User Details",
+      "watchUserDetails": "Watch User Details",
+      "driverDetails": "Driver Details"
+    },
+    "request": {
+      "status": {
+        "COMPLETED": "Completed",
+        "PENDING": "Pending"
+      }
     }
   },
   "auth": {
