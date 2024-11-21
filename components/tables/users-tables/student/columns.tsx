@@ -1,7 +1,6 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { CellAction } from "./cell-action";
 import { IStudent } from "@/types/users";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
@@ -62,11 +61,11 @@ export const columns: ColumnDef<IStudent>[] = [
     </div>:"-"),
     enableHiding: true,
   },
-  {
-    accessorKey: "phone",
-    header: "phone",
-    cell: ({ row }) => <p className="rtl:text-right text-left" dir="ltr">{row?.original?.phone}</p> 
-  },
+  // {
+  //   accessorKey: "phone",
+  //   header: "phone",
+  //   cell: ({ row }) => <p className="rtl:text-right text-left" dir="ltr">{row?.original?.phone}</p> 
+  // },
   // {
   //   id: "actions",
   //   cell: ({ row }) => <CellAction data={row.original} />,
