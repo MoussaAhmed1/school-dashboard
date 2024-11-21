@@ -208,7 +208,7 @@ export const UserForm: React.FC<UserFormProps> = ({
                         <SelectTrigger>
                           <SelectValue placeholder={t("selectGender")} />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="max-h-[200px]">
                           <SelectItem value="male">{t("male")}</SelectItem>
                           <SelectItem value="female">{t("female")}</SelectItem>
                         </SelectContent>
