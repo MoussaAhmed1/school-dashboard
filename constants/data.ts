@@ -86,11 +86,6 @@ export const navItems: NavItem[] = [
         label:"about_us"
       },
       {
-        title: "Contact us",
-        href: "/dashboard/settings/contact-us",
-        label:"contact_us"
-      },
-      {
         title: "FAQ",
         href: "/dashboard/settings/faq",
         label:"faq"
