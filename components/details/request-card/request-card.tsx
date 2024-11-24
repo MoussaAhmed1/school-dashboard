@@ -20,6 +20,7 @@ function RequestCard({ request }: IProps) {
     const router = useRouter();
     const t = useTranslations("tableColumns");
     const tUser = useTranslations("pages.users");
+    const tDetails = useTranslations("pages.requestDetails");
     const currentLang = Cookie.get("Language") ?? "en";
     return (
         <section className="antialiased bg-[#FAFAFA] dark:bg-[#181D26] shadow-lg rounded-xl" dir={currentLang === "ar" ? "rtl" : "ltr"}>
@@ -110,7 +111,7 @@ function RequestCard({ request }: IProps) {
                         <div className="flex">
                             <label className="flex items-center gap-1 text-md font-semibold text-black dark:text-white">
                                 <Clock2 className="" />
-                                {t("updatedAt")}
+                                {tDetails("updatedAt")}
                                 :
                             </label>
                             <div className="flex items-center gap-1 text-gray-500 dark:text-white  mx-2">
