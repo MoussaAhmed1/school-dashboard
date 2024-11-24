@@ -24,7 +24,7 @@ function RequestCard({ request }: IProps) {
     return (
         <section className="antialiased bg-[#FAFAFA] dark:bg-[#181D26] shadow-lg rounded-xl" dir={currentLang === "ar" ? "rtl" : "ltr"}>
             <article
-                className="w-full flex flex-wrap bg-[#FAFAFA] dark:bg-[#181D26]  dark:border-gray-700 md:flex-nowrap shadow-lg  group  transform duration-500 hover:-translate-y-1 rounded-xl">
+                className="w-full flex flex-wrap bg-[#FAFAFA] dark:bg-[#181D26] border border-stroke  dark:border-gray-700 md:flex-nowrap shadow-lg  group rounded-md">
                 <div className="w-full">
                     <div className="py-1 flex items-center justify-between border-b border-stroke px-2 dark:border-gray-700">
                         <h1 className="font-medium flex items-center text-black dark:text-white w-fit text-left " dir={currentLang === "en" ? "rtl" : "ltr"}>
