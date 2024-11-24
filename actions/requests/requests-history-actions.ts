@@ -14,7 +14,7 @@ import { ITEMS_PER_PAGE } from "@/constants/data";
 export const fetchRequests = async ({
   page = 1,
   limit = ITEMS_PER_PAGE,
-
+  status = "PENDING",
 }: Params): Promise<any> => {
   const lang = cookies().get("Language")?.value;
   const accessToken = cookies().get("access_token")?.value;
@@ -23,6 +23,7 @@ export const fetchRequests = async ({
       params: {
         page,
         limit,
+        filters:`status=${status}`,
         sortBy: "created_at=desc",
       },
       headers: {
@@ -50,5 +51,25 @@ export const fetchSingleRequest = async (id: string): Promise<any> => {
     return res;
   } catch (error: any) {
     throw new Error(error);
+  }
+};
+
+export const ConfirmRequest = async (request_id:string): Promise<any> => {
+  const lang = cookies().get("Language")?.value;
+  
+  try {
+    const accessToken = cookies().get("access_token")?.value;
+    await axiosInstance.post(endpoints.watches.confirm_request, {request_id}, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Accept-Language": lang,
+      },
+    });
+
+    revalidatePath(`/dashboard/history-of-requests`);
+  } catch (error) {
+    return {
+      error: getErrorMessage(error),
+    };
   }
 };

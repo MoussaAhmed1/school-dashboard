@@ -1,7 +1,6 @@
 import { fetchRequests } from "@/actions/requests/requests-history-actions";
 import { getDictionary } from "@/app/[lang]/messages";
 import BreadCrumb from "@/components/breadcrumb";
-import RequestCard from "@/components/details/request-card/request-cards";
 import RequestsList from "@/components/details/request-card/requests-list";
 import Pagination from "@/components/shared/table/Pagination";
 import { Heading } from "@/components/ui/heading";
@@ -27,13 +26,14 @@ export default async function page({ searchParams, params }: paramsProps) {
   const res = await fetchRequests({
     page,
     limit,
+    status: "PENDNING", 
     filters: search,
   });
   const totalRequests = res?.data?.meta?.total || 0; //1000
   const pageCount = Math.ceil(totalRequests / limit);
   const requests: HistoryOfRequests[] = res?.data?.data || [];
   const { navigation } = await getDictionary(params?.lang)
-  const breadcrumbItems = [{ title: navigation.historyOfRequests, link: `/dashboard/history-of-requests` }];
+  const breadcrumbItems = [{ title: navigation.home, link: `/dashboard` }];
   return (
     <>
       <div className="flex-1 space-y-4  p-4 md:p-8 pt-6 ">
@@ -41,7 +41,7 @@ export default async function page({ searchParams, params }: paramsProps) {
 
         <div className="flex items-start justify-between">
           <Heading
-            title={`${navigation.historyOfRequests} (${totalRequests})`}
+            title={`${navigation.home} (${totalRequests})`}
           />
         </div>
         <Separator />

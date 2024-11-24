@@ -45,13 +45,6 @@ export const CellAction: React.FC<CellActionProps> = ({ data, toBeVerified = fal
           >
              <Edit className="mx-1 h-4 w-4" /> {t("update")}
           </DropdownMenuItem>
-          <DropdownMenuItem>
-          <Approve successMessage="Deleted Successfully" title="Delete User"  method={removeUser} revalidateData="/dashboard/students" id={data?.id} >
-              <div className="flex">
-                <Trash className="mx-1 h-4 w-4" /> {t("delete")}
-              </div>
-            </Approve>
-          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>

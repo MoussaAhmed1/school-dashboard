@@ -81,13 +81,13 @@ export const VerificationRequestsCellAction: React.FC<CellActionProps> = ({ data
           >
              <Edit className="mx-1 h-4 w-4" /> {t("update")}
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          {/* <DropdownMenuItem>
           <Approve successMessage="User Deleted Successfully" title="Delete User"  method={removeUser} revalidateData="/dashboard/doctors" id={data?.id} >
               <div className="flex">
                 <Trash className="mx-1 h-4 w-4" /> {t("delete")}
               </div>
             </Approve>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
         </DropdownMenuContent>
       </DropdownMenu>
     </>

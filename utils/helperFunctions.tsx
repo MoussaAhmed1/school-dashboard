@@ -48,6 +48,11 @@ export function getTodayDateSimpleFormat(date: Date|string): string {
   return moment(date).format('YYYY-MM-DD HH:mm:ss');
 }
 
+export function convertUtcToLocal(utcTime:string) {
+  return moment.utc(utcTime).local().format("YYYY-MM-DD  hh:mm A");
+}
+
+
 
 export const Captalize = (word: any) => {
   if (typeof word == "string")

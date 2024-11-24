@@ -1,15 +1,15 @@
 {
   "navigation": {
-    "home": "الرئيسية",
+    "home": "طلبات قيد الانتظار",
     "admins": "المديرون",
     "users": "المستخدمين",
     "parents": "اولياء الامور",
     "drivers": "السائقين",
     "schools": "المدارس",
-    "security": "الامن",
+    "security": "المشرفين",
     "watches": "الساعات",
     "students": "الطلاب",
-    "historyOfRequests": "سجل الطلبات",
+    "historyOfRequests": "الطلبات المكتملة",
     "general_settings": "سياسات الخصوصية والمعلومات",
     "notifications": "الإشعارات",
     "messages": "الرسائل",
@@ -260,7 +260,7 @@
       "parents": "اولياء الامور",
       "drivers": "السائقين",
       "schools": "المدارس",
-      "security": "الامن"
+      "security": "المشرفين"
     },
     "messages": {
       "messages": "الرسائل",
@@ -379,7 +379,7 @@
       "updateAdmin": "تحديث المدير",
       "profileAddedSuccessfully": "تمت إضافة الملف الشخصي بنجاح.",
       "profileUpdatedSuccessfully": "تم تحديث الملف الشخصي بنجاح.",
-      "addSecurity": "اضافة مسئول أمن",
+      "addSecurity": "اضافة مشرف",
       "addParent": " اضافة ولي امر",
       "addDriver": "اضافة سائق",
       "addSchool": "اضافة مدرسة",
@@ -440,21 +440,23 @@
       "logout": "تسجيل خروج",
       "school": "المدرسة",
       "selectSchool": "حدد المدرسة",
-      "editSecurity": "تعديل مسئول الامن",
-      "viewSecurity": "عرض مسئول الامن"
+      "editSecurity": "تعديل مشرف",
+      "viewSecurity": "عرض مشرف"
 
     },
     "requestDetails": {
       "title": "تفاصيل الطلب ",
       "status": "الحالة",
-      "code": "رمز الطلب",
+      "code": "كود الطلب",
       "school": "المدرسة",
+      "schoolName": "اسم المدرسة",
       "createdAt": "تاريخ الإنشاء",
       "updatedAt": "تاريخ التحديث",
       "parentDetails": "تفاصيل الولي",
       "userDetails": "تفاصيل المستخدم",
-      "watchUserDetails": "تفاصيل مراقب الطلب",
-      "driverDetails": "تفاصيل  السائق"
+      "watchUserDetails": "تفاصيل الطالب",
+      "driverDetails": "تفاصيل  المستخدم الفرعي ",
+      "joiningDate": "تاريخ الانضمام"
     },
     "request": {
       "status": {

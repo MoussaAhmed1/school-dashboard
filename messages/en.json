@@ -1,15 +1,16 @@
 {
   "navigation": {
-    "home": "Home",
+    "home": "Pending Requests",
     "admins": "Admins",
     "users": "Users",
     "parents": "Parents",
     "drivers": "Drivers",
     "schools": "Schools",
-    "security": "Security",
+    "Supervisor": "Supervisor",
     "students": "Students",
     "watches": "Watches",
-    "historyOfRequests": "History of Requests",
+    "security": "Supervisors",
+    "historyOfRequests": "Completed requests",
     "general_settings": "Policies & Information",
     "messages": "Messages",
     "notifications": "Notifications",
@@ -179,7 +180,7 @@
       "schools": "Schools",
       "title": "Title",
       "email": "Email",
-      "security": "Security"
+      "Supervisor": "Supervisor"
     },
     "messages": {
       "messages": "Messages",
@@ -342,7 +343,7 @@
       "createSocialLink": "Create Social Link",
       "socialLinkUpdated": "Social Link updated.",
       "socialLinkCreated": "Social Link created.",
-      "editSecurity": "Edit Security",
+      "editSecurity": "Edit Supervisor",
       "viewUser": "View User",
       "editUser": "Edit User"
 
@@ -373,7 +374,7 @@
       "updateAdmin": "Update Admin",
       "profileAddedSuccessfully": "Profile has been successfully added.",
       "profileUpdatedSuccessfully": "Profile has been successfully updated.",
-      "addSecurity": "Add Security",
+      "addSecurity": "Add Supervisor",
       "addParent": "Add Parent",
       "addDriver": "Add Driver",
       "addSchool": "Add School",
@@ -464,8 +465,8 @@
       "school": "School",
       "selectSchool": "Select School",
       "editUser": "Edit User",
-      "editSecurity": "Edit Security",
-      "viewSecurity": "View Security"
+      "editSecurity": "Edit Supervisor",
+      "viewSecurity": "View Supervisor"
 
     },
     "requestDetails": {
@@ -474,11 +475,13 @@
       "code": "Request Code",
       "createdAt": "Created At",
       "school": "School",
+      "schoolName": "School Name",
       "updatedAt": "Updated At",
       "parentDetails": "Parent Details",
       "userDetails": "User Details",
       "watchUserDetails": "Watch User Details",
-      "driverDetails": "Driver Details"
+      "driverDetails": "Sub-User Details",
+      "joiningDate": "Joining date"
     },
     "request": {
       "status": {

@@ -1,7 +1,7 @@
 import { fetchRequests } from "@/actions/requests/requests-history-actions";
 import { getDictionary } from "@/app/[lang]/messages";
 import BreadCrumb from "@/components/breadcrumb";
-import RequestCard from "@/components/details/request-card/request-cards";
+import RequestCard from "@/components/details/request-card/request-card";
 import RequestsList from "@/components/details/request-card/requests-list";
 import Pagination from "@/components/shared/table/Pagination";
 import { Heading } from "@/components/ui/heading";
@@ -27,6 +27,7 @@ export default async function page({ searchParams, params }: paramsProps) {
   const res = await fetchRequests({
     page,
     limit,
+    status: "COMPLETED",
     filters: search,
   });
   const totalRequests = res?.data?.meta?.total || 0; //1000
@@ -45,7 +46,7 @@ export default async function page({ searchParams, params }: paramsProps) {
           />
         </div>
         <Separator />
-        <RequestsList requests={requests}/>
+        <RequestsList requests={requests} />
         <Pagination
           pageNo={page}
           pageCount={pageCount}

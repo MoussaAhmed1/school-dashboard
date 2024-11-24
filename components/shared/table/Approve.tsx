@@ -11,7 +11,7 @@ interface IProps {
     revalidateData?: string;
     successMessage: string;
     defualt?: boolean,
-    method: ({id,revalidateData}:{id:string,revalidateData?:string}) => Promise<any>;
+    method: (id:string) => Promise<any>;
     children?: React.ReactNode;
 
 }
@@ -22,7 +22,7 @@ function Approve({ title, defualt = false, successMessage, method, id, children,
     const { toast } = useToast();
     const onConfirm = async () => {
         setLoading(true);
-        const res = await method({id,revalidateData});
+        const res = await method(id);
         if (res?.error) {
             toast({
                 variant: "destructive",
