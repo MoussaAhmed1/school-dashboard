@@ -39,6 +39,13 @@ export const navItems: NavItem[] = [
     subItems: false,
   },
   {
+    title: "historyOfRequests",
+    href: "/dashboard/history-of-requests",
+    icon: "trello",
+    label: "historyOfRequests",
+    subItems: false,
+  },
+  {
     title: "security",
     href: "/dashboard/security",
     icon: "admin",
@@ -52,13 +59,7 @@ export const navItems: NavItem[] = [
     label: "students",
     subItems: false,
   },
-  {
-    title: "historyOfRequests",
-    href: "/dashboard/history-of-requests",
-    icon: "trello",
-    label: "historyOfRequests",
-    subItems: false,
-  },
+
   {
     title: "Notifications",
     href: "/dashboard/notifications",
