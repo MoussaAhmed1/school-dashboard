@@ -447,7 +447,7 @@
     "requestDetails": {
       "title": "تفاصيل الطلب ",
       "status": "الحالة",
-      "code": "كود الطلب",
+      "code": "رقم الطلب",
       "school": "المدرسة",
       "schoolName": "اسم المدرسة",
       "createdAt": "تاريخ الإنشاء",

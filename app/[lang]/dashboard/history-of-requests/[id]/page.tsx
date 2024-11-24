@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import BreadCrumb from "@/components/breadcrumb";
-import {  Image as ImageIcon, Phone, User, Mail, Clock2, BadgeCheck, Hash, Building } from "lucide-react";
+import {  Image as ImageIcon, Phone, User, Mail, Clock2, BadgeCheck, Hash } from "lucide-react";
 import { Heading } from "@/components/ui/heading";
 import { ISingleRequest } from "@/types/watches/requests";
 import { fetchSingleRequest } from "@/actions/requests/requests-history-actions";
 import userAvatar from "../../../../../public/assets/user-avatar.png";
-import { convertUtcToLocal,maskCode} from "@/utils/helperFunctions";
+import { convertUtcToLocal} from "@/utils/helperFunctions";
 import { getDictionary } from "@/app/[lang]/messages";
 import RequestDetails from "@/components/details/requests-history";
 
@@ -41,7 +41,7 @@ const page = async ({ params }: { params: { id: string, lang: "ar" | "en" } }) =
               [
               {
                 key: pages.requestDetails.code,
-                value: maskCode(request?.code) as unknown as string,
+                value: request?.number as unknown as string,
                 icon: <Hash className="details_icon" />,
                 type: "text",
               },

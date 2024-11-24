@@ -2,7 +2,7 @@
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { HistoryOfRequests } from "@/types/watches/requests";
-import { convertUtcToLocal, getCustomNameKeyLang, maskCode } from "@/utils/helperFunctions";
+import { convertUtcToLocal, getCustomNameKeyLang } from "@/utils/helperFunctions";
 import { AvatarImage } from "@radix-ui/react-avatar";
 import { CheckCheck, Clock2, Eye, Hash, User, Watch } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -28,7 +28,7 @@ function RequestCard({ request }: IProps) {
                 <div className="w-full">
                     <div className="py-1 flex items-center justify-between border-b border-stroke px-2 dark:border-gray-700">
                         <h1 className="font-medium flex items-center text-black dark:text-white w-fit text-left " dir={currentLang === "en" ? "rtl" : "ltr"}>
-                            {maskCode(request?.code)}
+                            {request?.number}
                             <Hash className="" />
                         </h1>
                         <div className="flex items-baseline gap-2 py-1 ">
@@ -103,6 +103,19 @@ function RequestCard({ request }: IProps) {
                             <div className="flex items-center gap-1 text-gray-500 dark:text-white  mx-2">
                                 <p className="text-gray-500 dark:text-white rtl:text-right text-left" dir="ltr">
                                     {convertUtcToLocal(request?.created_at)}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="flex">
+                            <label className="flex items-center gap-1 text-md font-semibold text-black dark:text-white">
+                                <Clock2 className="" />
+                                {t("updatedAt")}
+                                :
+                            </label>
+                            <div className="flex items-center gap-1 text-gray-500 dark:text-white  mx-2">
+                                <p className="text-gray-500 dark:text-white rtl:text-right text-left" dir="ltr">
+                                    {convertUtcToLocal(request?.updated_at)}
                                 </p>
                             </div>
                         </div>

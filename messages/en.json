@@ -472,7 +472,7 @@
     "requestDetails": {
       "title": "Request Details",
       "status": "Status",
-      "code": "Request Code",
+      "code": "Request Number",
       "createdAt": "Created At",
       "school": "School",
       "schoolName": "School Name",
