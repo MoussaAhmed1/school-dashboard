@@ -17,7 +17,6 @@ export const fetchRequests = async ({
   limit = ITEMS_PER_PAGE,
   status = "PENDING",
 }: Params): Promise<any> => {
-  console.log("commming to here");
   const lang = cookies().get("Language")?.value;
   const accessToken = cookies().get("access_token")?.value;
   try {
@@ -35,7 +34,6 @@ export const fetchRequests = async ({
     });
     return res;
   } catch (error: any) {
-    console.log(error);
     return {
       error: getErrorMessage(error),
     };
