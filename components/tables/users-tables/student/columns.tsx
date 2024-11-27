@@ -36,9 +36,33 @@ export const columns: ColumnDef<IStudent>[] = [
         />
         <AvatarFallback>{row?.original?.parent?.name[0]}</AvatarFallback>
       </Avatar>
-      <p >
-        {row?.original?.parent?.name}
-      </p>
+      <div className="flex flex-col items-start">
+        <span> {row?.original?.parent?.name}</span>
+      </div>
+    </div>:"-"),
+    enableHiding: true,
+  },
+  {
+    accessorKey: "parentPhone",
+    header:"parentPhone",
+    cell: ({ row }) => (
+      row?.original?.parent ?
+    <div className="flex items-center gap-3">
+      <div className="flex flex-col items-start">
+        <span> {row?.original?.parent?.phone}</span>
+      </div>
+    </div>:"-"),
+    enableHiding: true,
+  },
+  {
+    accessorKey: "parentEmail",
+    header:"parentEmail",
+    cell: ({ row }) => (
+      row?.original?.parent ?
+    <div className="flex items-center gap-3">
+      <div className="flex flex-col items-start">
+        <span>{row?.original?.parent?.email}</span>
+      </div>
     </div>:"-"),
     enableHiding: true,
   },

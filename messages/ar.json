@@ -29,6 +29,7 @@
     "action_cannot_be_undone": "لا يمكن التراجع عن هذا الإجراء.",
     "cancel": "إلغاء",
     "close": "اغلاق",
+    "noRequests": "لا يوجد طلبات",
     "continue": "متابعة",
     "reason_to_cancel": "سبب الإلغاء",
 
@@ -123,6 +124,8 @@
     "student": "الطالب",
     "school": "المدرسة",
     "parent": "ولي الامر",
+    "parentEmail": "ايميل ولي الامر",
+    "parentPhone": "هاتف ولي الامر",
     "driver": "المستخدمين الفرعيين"
   },
   "pages": {

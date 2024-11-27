@@ -10,6 +10,8 @@ import Cookie from 'js-cookie';
 import { useToast } from "@/components/ui/use-toast";
 import LoadMore from "./LoadMore";
 import { useTranslations } from "next-intl";
+import Noitems from "../no-items/NoItems";
+import { Box } from "lucide-react";
 
 interface IProps {
     _requests: HistoryOfRequests[];
@@ -17,7 +19,7 @@ interface IProps {
     pageCount:number;
 }
 
-function RequestsList({ _requests=[], status,pageCount }: IProps) {
+function PendingRequestsList({ _requests=[], status,pageCount }: IProps) {
     const school_id = Cookie.get("school_id");
     const { toast } = useToast();
     const t = useTranslations("tableColumns");
@@ -77,7 +79,7 @@ function RequestsList({ _requests=[], status,pageCount }: IProps) {
     }, [requests, school_id, status, toast]);
     return (
         <div className="rounded-md border h-[75vh] p-2" >
-            {
+            {requests?.length > 0 ?
                 requests.map((request, index) => (
                     <div key={request.id} className="w-full">
                         <RequestCard
@@ -87,7 +89,15 @@ function RequestsList({ _requests=[], status,pageCount }: IProps) {
                         <Separator className="my-4 w-full" />
                     </div>
                 ))
-            }
+                : (
+                    <div className="w-full">
+                      <Noitems
+                        title={"noRequests"}
+                        icon={<Box style={{ color: "gray", fontSize: "4.2em" }} />}
+                      />
+                    </div>
+      
+                  )}
             {
             <LoadMore btnTitle={t("loadMore")} page={page} setPage={setPage} pageCount={pageCount} approveRequestArray={approveRequestArray} requests={requests} setRequests={setRequests}/>
             }
@@ -95,5 +105,5 @@ function RequestsList({ _requests=[], status,pageCount }: IProps) {
     )
 }
 
-export default RequestsList
+export default PendingRequestsList
 

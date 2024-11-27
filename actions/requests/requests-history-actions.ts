@@ -25,7 +25,7 @@ export const fetchRequests = async ({
       params: {
         page,
         limit,
-        filters:filters?[`user.name=${filters},status=${status}`,`user.phone=${filters},status=${status}`,`number=${filters},status=${status}`]:`status=${status}`,
+        filters:filters?[`user.name=${filters},status=${status}`,`user.phone=${filters},status=${status}`,`user.email=${filters},status=${status}`,`number=${filters},status=${status}`]:`status=${status}`,
         sortBy: "created_at=desc",
       },
       headers: {

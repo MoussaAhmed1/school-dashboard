@@ -28,7 +28,7 @@ const DetailsCard = ({ title, data }: { title: string, data: { key: string, valu
                   alt={data.key}
                   className="w-[50px] h-[50px]"
                 />
-                    : <p className="text-sm leading-6 text-gray-400 mx-2 rtl:text-right text-left " dir={data?.dir??"ltr"}>{data?.value as string}</p>
+                    : <p className="text-sm leading-6 text-gray-500 mx-2 rtl:text-right text-left " dir={data?.dir??"ltr"}>{data?.value as string}</p>
                 }
               </div>
             ))}

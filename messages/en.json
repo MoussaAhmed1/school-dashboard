@@ -30,6 +30,7 @@
     "cancel": "Cancel",
     "continue": "Continue",
     "close": "Close",
+    "noRequests": "No Requests",
     "reason_to_cancel": "Reason to cancel",
     "add_new": "Add New",
     "dashboard": "Dashboard",
@@ -119,6 +120,8 @@
     "student": "Student",
     "school": "School",
     "parent": "Parent",
+    "parentEmail": "Parent Email",
+    "parentPhone": "Parent Phone",
     "driver": "Sub User Count"
   },
   "pages": {

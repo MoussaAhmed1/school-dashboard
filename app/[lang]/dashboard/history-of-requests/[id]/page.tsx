@@ -18,8 +18,7 @@ const page = async ({ params }: { params: { id: string, lang: "ar" | "en" } }) =
   const request: ISingleRequest = res?.data?.data;
   const { pages, navigation } = await getDictionary(params?.lang)
 
-  const breadcrumbItems = request?.status !== "COMPLETED" ? 
-    [{ title: navigation.home, link: "/dashboard" }] : [
+  const breadcrumbItems =  [
     { title: navigation.historyOfRequests, link: "/dashboard/history-of-requests" },
     {
       title: pages.requestDetails.title,

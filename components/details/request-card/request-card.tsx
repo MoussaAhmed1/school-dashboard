@@ -54,8 +54,6 @@ function RequestCard({ request,approveRequestArray }: IProps) {
                         <div className="flex items-center">
                             <label className="flex items-center gap-1 text-md font-semibold text-black dark:text-white">
                                 <User className=" h-5 w-5" />
-                                {t("name")}
-                                :
                             </label>
                             <div className="flex items-center gap-1 text-gray-500 dark:text-white mx-2">
                                 <Avatar className="w-8 h-8">
@@ -67,7 +65,7 @@ function RequestCard({ request,approveRequestArray }: IProps) {
                                 </Avatar>
                                 <p className="text-gray-500 dark:text-white">
                                     {request?.user?.name}
-                                    {request?.is_parent ? ` (${getCustomNameKeyLang("Parent", "والد")})` : `(${getCustomNameKeyLang("Driver", "سائق")})`}
+                                    {request?.is_parent ? ` (${getCustomNameKeyLang("Parent", "والد")})` : `(${getCustomNameKeyLang("Sub User", "مستخدم فرعي")})`}
                                 </p>
 
                             </div>
@@ -77,8 +75,6 @@ function RequestCard({ request,approveRequestArray }: IProps) {
                         <div className="flex">
                             <label className="flex items-center gap-1 text-md font-semibold text-black dark:text-white">
                                 <Watch className=" h-5 w-5" />
-                                {t("student")}
-                                :
                             </label>
                             <div className="flex items-center gap-1  text-gray-500 dark:text-white mx-2">
                                 <Avatar className="w-8 h-8">
@@ -95,25 +91,9 @@ function RequestCard({ request,approveRequestArray }: IProps) {
                             </div>
                         </div>
 
-
                         <div className="flex">
                             <label className="flex items-center gap-1 text-md font-semibold text-black dark:text-white">
                                 <Clock2 className="" />
-                                {t("createdAt")}
-                                :
-                            </label>
-                            <div className="flex items-center gap-1 text-gray-500 dark:text-white  mx-2">
-                                <p className="text-gray-500 dark:text-white rtl:text-right text-left" dir="ltr">
-                                    {convertUtcToLocal(request?.created_at)}
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="flex">
-                            <label className="flex items-center gap-1 text-md font-semibold text-black dark:text-white">
-                                <Clock2 className="" />
-                                {tDetails("updatedAt")}
-                                :
                             </label>
                             <div className="flex items-center gap-1 text-gray-500 dark:text-white  mx-2">
                                 <p className="text-gray-500 dark:text-white rtl:text-right text-left" dir="ltr">
