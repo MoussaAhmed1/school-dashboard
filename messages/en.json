@@ -119,7 +119,7 @@
     "student": "Student",
     "school": "School",
     "parent": "Parent",
-    "driver": "Driver"
+    "driver": "Sub User Count"
   },
   "pages": {
     "home": {

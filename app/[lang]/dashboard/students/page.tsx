@@ -24,11 +24,12 @@ export default async function page({ searchParams,params }: paramsProps) {
   const res = await fetchStudents({
     page,
     limit,
+    filters: search,
   });
   const totalUsers = res?.data?.meta?.total || 0; //1000
   const pageCount = Math.ceil(totalUsers / limit);
   const users: IStudent[] = res?.data?.data || [];
-  const {navigation,shared} = await getDictionary(params?.lang)
+  const {navigation} = await getDictionary(params?.lang)
   const breadcrumbItems = [{ title: navigation.students, link: `/dashboard/students` }];
   return (
     <>

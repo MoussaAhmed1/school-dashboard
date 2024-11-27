@@ -1,3 +1,5 @@
+"use client";
+
 import { useDebounce } from "use-debounce";
 import { useSearchParams } from "next/navigation";
 import { useState, useCallback, useEffect } from "react";
@@ -19,7 +21,10 @@ function SearchInput({searchKey}:{searchKey:string}) {
 
   //as we search by single word as first_name or last_name no the fullname
   useEffect(() => {
-    router.replace(`${pathname}?${createQueryString("search", value?.trim()?.split(" ")[0] ?? "")}`, {
+    const updatedQuery = createQueryString("search", value?.trim() ?? "");
+    const updatedQueryWithPage = createQueryString("page", "1", updatedQuery);
+
+    router.replace(`${pathname}?${updatedQueryWithPage}`, {
       scroll: false,
     });
   }, [createQueryString, pathname, router, value]);

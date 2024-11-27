@@ -112,7 +112,6 @@
     "reservationType": "نوع الحجز",
     "doctor": "الدكتور",
     "isUrgent": "عاجل",
-    "numberOfPharmacyOrder": "عدد طلبات الصيدلية",
     "expirationDays": "أيام انتهاء الصلاحية",
     "email": "البريد الإلكتروني",
     "price": "السعر",
@@ -124,7 +123,7 @@
     "student": "الطالب",
     "school": "المدرسة",
     "parent": "ولي الامر",
-    "driver": "السائق"
+    "driver": "المستخدمين الفرعيين"
   },
   "pages": {
     "home": {

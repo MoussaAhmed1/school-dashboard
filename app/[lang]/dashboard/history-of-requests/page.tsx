@@ -4,6 +4,7 @@ import { getDictionary } from "@/app/[lang]/messages";
 import BreadCrumb from "@/components/breadcrumb";
 import CompletedRequestsList from "@/components/details/request-card/compeleted-request-list";
 import Pagination from "@/components/shared/table/Pagination";
+import SearchInput from "@/components/shared/table/SearchInput";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { ITEMS_PER_PAGE } from "@/constants/data";
@@ -46,6 +47,7 @@ export default async function page({ searchParams, params }: paramsProps) {
           />
         </div>
         <Separator />
+        <SearchInput searchKey={"search"} />
         <CompletedRequestsList requests={requests} />
         <Pagination
           pageNo={page}

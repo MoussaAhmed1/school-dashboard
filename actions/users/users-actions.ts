@@ -25,7 +25,7 @@ export const fetchSecurity = async ({
       params: {
         page,
         limit,
-        filters:`roles=${role}`,
+        filters:filters?[`name=${filters}`,`phone=${filters}`,`email=${filters}`]:`roles=${role}`,
         sortBy: "created_at=desc",
       },
       headers: {
@@ -53,6 +53,7 @@ export const fetchStudents = async ({
       params: {
         page,
         limit,
+        filters:filters?[`name=${filters}`,`parent.name=${filters}`]:``,
       },
       headers: {
         Authorization: `Bearer ${accessToken}`,

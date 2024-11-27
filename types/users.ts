@@ -40,7 +40,7 @@ export interface IStudent {
   avatar: string
   school_id: string
   school: School
-  driver: Driver
+  drivers: Driver[]
   parent: Parent
 }
 

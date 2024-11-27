@@ -46,29 +46,13 @@ export const columns: ColumnDef<IStudent>[] = [
     accessorKey: "driver",
     header:"driver",
     cell: ({ row }) => (
-      row?.original?.driver?
-    <div className="flex items-center gap-3">
-      <Avatar className="w-10 h-10">
-        <AvatarImage
-          src={row?.original?.driver?.avatar ?? ""}
-          alt={row?.original?.driver?.name ?? ""}
-        />
-        <AvatarFallback>{row?.original?.driver?.name[0]}</AvatarFallback>
-      </Avatar>
-      <p >
-        {row?.original?.driver?.name}
+      row?.original?.drivers?
+    <div className="flex items-center">
+      <p className="text-center mx-5">
+        {row?.original?.drivers?.length}
       </p>
     </div>:"-"),
     enableHiding: true,
   },
-  // {
-  //   accessorKey: "phone",
-  //   header: "phone",
-  //   cell: ({ row }) => <p className="rtl:text-right text-left" dir="ltr">{row?.original?.phone}</p> 
-  // },
-  // {
-  //   id: "actions",
-  //   cell: ({ row }) => <CellAction data={row.original} />,
-  // },
 ];
 

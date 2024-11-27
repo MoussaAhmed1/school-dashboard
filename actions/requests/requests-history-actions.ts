@@ -16,6 +16,7 @@ export const fetchRequests = async ({
   page = 1,
   limit = ITEMS_PER_PAGE,
   status = "PENDING",
+  filters,
 }: Params): Promise<any> => {
   const lang = cookies().get("Language")?.value;
   const accessToken = cookies().get("access_token")?.value;
@@ -24,7 +25,7 @@ export const fetchRequests = async ({
       params: {
         page,
         limit,
-        filters:`status=${status}`,
+        filters:filters?[`user.name=${filters},status=${status}`,`user.phone=${filters},status=${status}`,`number=${filters},status=${status}`]:`status=${status}`,
         sortBy: "created_at=desc",
       },
       headers: {
