@@ -33,7 +33,7 @@ export type Employee = {
 export const navItems: NavItem[] = [
   {
     title: "Home",
-    href: "/dashboard",
+    href: "/dashboard/pending-requests",
     icon: "home",
     label: "home",
     subItems: false,
