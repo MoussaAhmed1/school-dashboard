@@ -21,10 +21,7 @@ function SearchInput({searchKey}:{searchKey:string}) {
 
   //as we search by single word as first_name or last_name no the fullname
   useEffect(() => {
-    const updatedQuery = createQueryString("search", value?.trim() ?? "");
-    const updatedQueryWithPage = createQueryString("page", "1", updatedQuery);
-
-    router.replace(`${pathname}?${updatedQueryWithPage}`, {
+    router.replace(`${pathname}?${createQueryString("search", value?.trim() ?? "")}`, {
       scroll: false,
     });
   }, [createQueryString, pathname, router, value]);
