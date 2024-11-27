@@ -11,11 +11,13 @@ import axiosInstance, {
 } from "../../utils/axios-client";
 import { ITEMS_PER_PAGE } from "@/constants/data";
 
+
 export const fetchRequests = async ({
   page = 1,
   limit = ITEMS_PER_PAGE,
   status = "PENDING",
 }: Params): Promise<any> => {
+  console.log("commming to here");
   const lang = cookies().get("Language")?.value;
   const accessToken = cookies().get("access_token")?.value;
   try {
@@ -33,6 +35,7 @@ export const fetchRequests = async ({
     });
     return res;
   } catch (error: any) {
+    console.log(error);
     return {
       error: getErrorMessage(error),
     };

@@ -11,12 +11,13 @@ interface IProps {
     revalidateData?: string;
     successMessage: string;
     defualt?: boolean,
-    method: (id:string) => Promise<any>;
+    method: (id: string) => Promise<any>;
     children?: React.ReactNode;
+    extraFunction?: (id: string) => void;
 
 }
 
-function Approve({ title, defualt = false, successMessage, method, id, children,revalidateData }: IProps) {
+function Approve({ title, defualt = false, successMessage, method, id, children, revalidateData, extraFunction }: IProps) {
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const { toast } = useToast();
@@ -36,6 +37,9 @@ function Approve({ title, defualt = false, successMessage, method, id, children,
                 title: "Action updated",
                 description: successMessage ? successMessage : `Request has been Approved.`,
             });
+            if (extraFunction) {
+                extraFunction(id);
+            }
         }
 
         setLoading(false);

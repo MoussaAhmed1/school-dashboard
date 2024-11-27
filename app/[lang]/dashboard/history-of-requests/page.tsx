@@ -1,8 +1,8 @@
+
 import { fetchRequests } from "@/actions/requests/requests-history-actions";
 import { getDictionary } from "@/app/[lang]/messages";
 import BreadCrumb from "@/components/breadcrumb";
-import RequestCard from "@/components/details/request-card/request-card";
-import RequestsList from "@/components/details/request-card/requests-list";
+import CompletedRequestsList from "@/components/details/request-card/compeleted-request-list";
 import Pagination from "@/components/shared/table/Pagination";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
@@ -46,7 +46,7 @@ export default async function page({ searchParams, params }: paramsProps) {
           />
         </div>
         <Separator />
-        <RequestsList requests={requests} />
+        <CompletedRequestsList requests={requests} />
         <Pagination
           pageNo={page}
           pageCount={pageCount}

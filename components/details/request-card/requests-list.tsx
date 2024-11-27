@@ -4,28 +4,96 @@ import { HistoryOfRequests } from "@/types/watches/requests"
 import RequestCard from "./request-card"
 import { Separator } from "@radix-ui/react-separator"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-interface IProps {
-    requests: HistoryOfRequests[];
+import { socket } from "@/app/socket";
+import { useCallback, useEffect, useState } from "react";
+import Cookie from 'js-cookie';
+import { useToast } from "@/components/ui/use-toast";
+import LoadMore from "./LoadMore";
+import { useTranslations } from "next-intl";
 
+interface IProps {
+    _requests: HistoryOfRequests[];
+    status: "COMPLETED" | "PENDNING";
+    pageCount:number;
 }
 
-function RequestsList({ requests }: IProps) {
+function RequestsList({ _requests=[], status,pageCount }: IProps) {
+    const school_id = Cookie.get("school_id");
+    const { toast } = useToast();
+    const t = useTranslations("tableColumns");
+    const [isConnected, setIsConnected] = useState(false);
+    const [transport, setTransport] = useState("N/A");
+    const [requests, setRequests] = useState<HistoryOfRequests[]>(_requests);
+    const [page, setPage] = useState(2);
+    const approveRequestArray = useCallback(
+        (requestId: string) => {
+            const updatedRequestsArray = requests.filter(obj => obj.id !== requestId);
+            setRequests(updatedRequestsArray);
+        },
+        [requests],
+    )
+
+    useEffect(() => {
+        if (socket.connected) {
+            onConnect();
+        }
+
+        function onConnect() {
+            setIsConnected(true);
+            setTransport(socket.io.engine.transport.name);
+
+            // socket.io.engine.on("upgrade", (transport) => {
+            //     setTransport(transport.name);
+            // });
+        }
+
+        socket.on(`new-request-${school_id}`, (request: HistoryOfRequests) => {
+            //create a new request object and add it to the requests list if it was request            
+            if (status == request?.status) {
+                const isExist = requests.find(req => req.id === request?.id)
+                if (isExist) {
+                    const updatedRequestsArray = requests.filter(obj => obj.id !== request.id);
+                    setRequests([request, ...updatedRequestsArray]);
+                }
+                else {
+                    setRequests(prev=>[request,...prev]);
+                }
+            }
+        });
+
+        function onDisconnect() {
+            setIsConnected(false);
+            setTransport("N/A");
+        }
+        
+        socket.on("connect", onConnect);
+        socket.on("disconnect", onDisconnect);
+        
+        return () => {
+            socket.off("connect", onConnect);
+            socket.off("disconnect", onDisconnect);
+            socket.off(`new-request-${school_id}`);
+        };
+    }, [requests, school_id, status, toast]);
     return (
-        <ScrollArea className="rounded-md border h-[75vh] p-2" >
+        <div className="rounded-md border h-[75vh] p-2" >
             {
-                requests.map((request) => (
+                requests.map((request, index) => (
                     <div key={request.id} className="w-full">
                         <RequestCard
-                            
                             request={request}
+                            approveRequestArray={approveRequestArray}
                         />
                         <Separator className="my-4 w-full" />
                     </div>
                 ))
             }
-            <ScrollBar orientation="vertical" />
-        </ScrollArea>
+            {
+            <LoadMore btnTitle={t("loadMore")} page={page} setPage={setPage} pageCount={pageCount} approveRequestArray={approveRequestArray} requests={requests} setRequests={setRequests}/>
+            }
+        </div>
     )
 }
 
 export default RequestsList
+

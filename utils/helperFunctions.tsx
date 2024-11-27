@@ -51,6 +51,9 @@ export function getTodayDateSimpleFormat(date: Date|string): string {
 export function convertUtcToLocal(utcTime:string) {
   return moment.utc(utcTime).local().format("YYYY-MM-DD  hh:mm A");
 }
+export function convertUtcToLocalTime(utcTime:string) {
+  moment.utc(utcTime?.slice(0, 19))?.local()?.calendar();
+}
 
 
 
