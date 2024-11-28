@@ -85,7 +85,7 @@ export const endpoints = {
   watches:{
     fetch:"/watch/get-all-IMEI",
     create:"/watch/insert",
-    history_request:"/watch/get-school-users-requests",
+    history_request:"watch/get-school-users-requests",
     confirm_request:"/watch/confirm-request",
     get_single:"/watch/get-users-requests",
   },
