@@ -59,9 +59,9 @@ function RequestCard({ request,approveRequestArray }: IProps) {
                                 <Avatar className="w-8 h-8">
                                     <AvatarImage
                                         src={request?.user?.avatar ?? ""}
-                                        alt={request?.user?.avatar ?? ""}
+                                        alt={request?.user?.name ?? ""}
                                     />
-                                    <AvatarFallback>{request?.user?.avatar[0]}</AvatarFallback>
+                                    <AvatarFallback>{request?.user?.name[0]}</AvatarFallback>
                                 </Avatar>
                                 <p className="text-gray-500 dark:text-white">
                                     {request?.user?.name}
