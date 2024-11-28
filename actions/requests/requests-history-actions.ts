@@ -3,7 +3,6 @@
 /* eslint-disable consistent-return */
 
 import { cookies } from "next/headers";
-import { revalidatePath } from "next/cache";
 import axiosInstance, {
   endpoints,
   getErrorMessage,
@@ -20,20 +19,30 @@ export const fetchRequests = async ({
 }: Params): Promise<any> => {
   const lang = cookies().get("Language")?.value;
   const accessToken = cookies().get("access_token")?.value;
+  let filterQueries;
+  if (filters) {
+    filterQueries = 
+      `filters=user.name%3D${filters}%2Cstatus%3D${status}&filters=number%3D${filters}%2Cstatus%3D${status}`
+    ;
+  } 
+
+  const url = `${process.env.NEXT_PUBLIC_HOST_API}${endpoints.watches.history_request}?page=${page}&limit=${limit}&sortBy=created_at=desc&${filterQueries}&filters=status%3D${status}`;
   try {
-    const res = await axiosInstance.get(endpoints.watches.history_request, {
-      params: {
-        page,
-        limit,
-        filters:filters?[`user.name=${filters},status=${status}`,`user.phone=${filters},status=${status}`,`user.email=${filters},status=${status}`,`number=${filters},status=${status}`]:`status=${status}`,
-        sortBy: "created_at=desc",
-      },
+    const res = await fetch(url , {
+      method: 'GET',
+      cache: 'no-store',
       headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Accept-Language": lang,
-      },
+        'Accept': 'application/json',
+       "Authorization": `Bearer ${accessToken}`,
+       "Accept-Language": `${lang}`,
+    },
     });
-    return res;
+    if (!res.ok) {
+      throw new Error(`Error ${res.status}: ${res.statusText}`);
+    }
+
+    let requestsRes = await res.json();
+    return {data:requestsRes};
   } catch (error: any) {
     return {
       error: getErrorMessage(error),
@@ -68,7 +77,6 @@ export const ConfirmRequest = async (request_id:string): Promise<any> => {
       },
     });
 
-    revalidatePath(`/dashboard/history-of-requests`);
   } catch (error) {
     return {
       error: getErrorMessage(error),
