@@ -2,110 +2,69 @@
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { HistoryOfRequests } from "@/types/watches/requests";
-import { convertUtcToLocal, getCustomNameKeyLang } from "@/utils/helperFunctions";
+import { convertUtcToLocal } from "@/utils/helperFunctions";
 import { AvatarImage } from "@radix-ui/react-avatar";
-import { CheckCheck, Clock2, Eye, Hash, User, Watch } from "lucide-react";
+import { CheckCheck, Eye, Hash} from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import Cookie from 'js-cookie';
 import Approve from "@/components/shared/table/Approve";
 import { ConfirmRequest } from "@/actions/requests/requests-history-actions";
 import { Button } from "@/components/ui/button";
-
+import { Card, CardContent } from "@/components/ui/card"
+import { CalendarIcon } from 'lucide-react'
 interface IProps {
     request: HistoryOfRequests;
-    approveRequestArray?:(id:string)=>void;
+    approveRequestArray?: (id: string) => void;
 }
 
-function RequestCard({ request,approveRequestArray }: IProps) {
+function RequestCard({ request, approveRequestArray }: IProps) {
     const router = useRouter();
-    const t = useTranslations("tableColumns");
     const tUser = useTranslations("pages.users");
-    const tDetails = useTranslations("pages.requestDetails");
     const currentLang = Cookie.get("Language") ?? "en";
     return (
-        <section className="antialiased bg-[#FAFAFA] dark:bg-[#181D26] shadow-lg rounded-xl" dir={currentLang === "ar" ? "rtl" : "ltr"}>
-            <article
-                className="w-full flex flex-wrap bg-[#FAFAFA] dark:bg-[#181D26] border border-stroke  dark:border-gray-700 md:flex-nowrap shadow-lg  group rounded-md">
-                <div className="w-full">
-                    <div className="py-1 flex items-center justify-between border-b border-stroke px-2 dark:border-gray-700">
-                        <h1 className="font-medium flex items-center text-black dark:text-white w-fit text-left " dir={currentLang === "en" ? "rtl" : "ltr"}>
-                            {request?.number}
-                            <Hash className="" />
-                        </h1>
-                        <div className="flex items-baseline gap-2 py-1 ">
-                            <Button
-                                variant={"ghost"}
-                                className="sm:mt-0 p-3 rounded-lg"
-                                onClick={() => router.push(`/dashboard/${request?.status==="COMPLETED"?"history-of-requests":"pending-requests"}/${request.id}`)}
-                            >
-                                <Eye className="mx-1 h-5 w-5 text-gray-600" />
-
-                            </Button>
-                            {request?.status !== "COMPLETED" && <Approve successMessage={tUser("requestApprovedSuccessfully")} title={tUser("approveRequest")} defualt method={ConfirmRequest} id={request?.id} extraFunction={approveRequestArray} >
-                                <Button className="sm:mt-0 p-3 bg-blue-500 hover:bg-blue-600 font-bold text-white md:text-lg rounded-lg shadow-md">
-                                    <CheckCheck className="mx-1 h-5 w-5 text-gray-100" />
-                                </Button>
-                            </Approve>}
-
+        <Card className="w-full bg-blue-50 hover:bg-blue-100 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors duration-200" dir={currentLang === "ar" ? "rtl" : "ltr"}>
+            <CardContent className="flex items-center justify-between p-4">
+                <div className="flex items-center space-x-4">
+                    <div className="flex items-center gap-1  text-gray-500 dark:text-white mx-2">
+                        <Avatar className="w-12 h-12">
+                            <AvatarImage
+                                src={request?.watch_user?.avatar ?? ""}
+                                alt={request?.watch_user?.avatar ?? ""}
+                            />
+                            <AvatarFallback>{request?.watch_user?.avatar[0]}</AvatarFallback>
+                        </Avatar>
+                    </div>
+                    <div>
+                        <h3 className="text-lg font-semibold dark:text-white">{request?.watch_user?.name}</h3>
+                        <div className="flex items-center text-sm text-muted-foreground dark:text-gray-300" dir="ltr">
+                            <Hash className="h-4 w-4" />
+                            <span className="mr-2 hidden md:block ">{request?.number}</span>
+                            <CalendarIcon className="mx-2 h-4 w-4 mr-1" />
+                           <span>{convertUtcToLocal(request?.updated_at)}</span>
                         </div>
                     </div>
-                    <div className="flex px-2 py-3 flex-row gap-md-5 gap-3 flex-wrap">
-                        <div className="flex items-center">
-                            <label className="flex items-center gap-1 text-md font-semibold text-black dark:text-white">
-                                <User className=" h-5 w-5" />
-                            </label>
-                            <div className="flex items-center gap-1 text-gray-500 dark:text-white mx-2">
-                                <Avatar className="w-8 h-8">
-                                    <AvatarImage
-                                        src={request?.user?.avatar ?? ""}
-                                        alt={request?.user?.name ?? ""}
-                                    />
-                                    <AvatarFallback>{request?.user?.name[0]}</AvatarFallback>
-                                </Avatar>
-                                <p className="text-gray-500 dark:text-white">
-                                    {request?.user?.name}
-                                    {request?.is_parent ? ` (${getCustomNameKeyLang("Parent", "والد")})` : `(${getCustomNameKeyLang("Sub User", "مستخدم فرعي")})`}
-                                </p>
+                </div>
+                <div className="flex space-x-2">
+                    <div className="flex items-baseline gap-2 py-1 ">
+                        <Button
+                            variant={"ghost"}
+                            className="sm:mt-0 p-3 rounded-lg"
+                            onClick={() => router.push(`/dashboard/${request?.status === "COMPLETED" ? "history-of-requests" : "pending-requests"}/${request.id}`)}
+                        >
+                            <Eye className="mx-1 h-5 w-5 text-gray-600" />
 
-                            </div>
-                        </div>
-
-
-                        <div className="flex">
-                            <label className="flex items-center gap-1 text-md font-semibold text-black dark:text-white">
-                                <Watch className=" h-5 w-5" />
-                            </label>
-                            <div className="flex items-center gap-1  text-gray-500 dark:text-white mx-2">
-                                <Avatar className="w-8 h-8">
-                                    <AvatarImage
-                                        src={request?.watch_user?.avatar ?? ""}
-                                        alt={request?.watch_user?.avatar ?? ""}
-                                    />
-                                    <AvatarFallback>{request?.watch_user?.avatar[0]}</AvatarFallback>
-                                </Avatar>
-                                <p >
-                                    {request?.watch_user?.name}
-                                </p>
-
-                            </div>
-                        </div>
-
-                        <div className="flex">
-                            <label className="flex items-center gap-1 text-md font-semibold text-black dark:text-white">
-                                <Clock2 className="" />
-                            </label>
-                            <div className="flex items-center gap-1 text-gray-500 dark:text-white  mx-2">
-                                <p className="text-gray-500 dark:text-white rtl:text-right text-left" dir="ltr">
-                                    {convertUtcToLocal(request?.updated_at)}
-                                </p>
-                            </div>
-                        </div>
+                        </Button>
+                        {request?.status !== "COMPLETED" && <Approve successMessage={tUser("requestApprovedSuccessfully")} title={tUser("approveRequest")} defualt method={ConfirmRequest} id={request?.id} extraFunction={approveRequestArray} >
+                            <Button className="sm:mt-0 p-3 bg-blue-500 hover:bg-blue-600 font-bold text-white md:text-lg rounded-lg shadow-md">
+                                <CheckCheck className="mx-1 h-5 w-5 text-gray-100" />
+                            </Button>
+                        </Approve>}
 
                     </div>
                 </div>
-            </article>
-        </section>
+            </CardContent>
+        </Card>
     )
 }
 
