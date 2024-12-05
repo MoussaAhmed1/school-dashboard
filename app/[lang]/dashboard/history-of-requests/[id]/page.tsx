@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import BreadCrumb from "@/components/breadcrumb";
-import {  Image as ImageIcon, Phone, User, Mail, Clock2, BadgeCheck, Hash } from "lucide-react";
+import {  Image as ImageIcon, User, Mail, Clock2, BadgeCheck, Hash } from "lucide-react";
 import { Heading } from "@/components/ui/heading";
 import { ISingleRequest } from "@/types/watches/requests";
 import { fetchSingleRequest } from "@/actions/requests/requests-history-actions";
@@ -80,13 +80,6 @@ const page = async ({ params }: { params: { id: string, lang: "ar" | "en" } }) =
                 type: "img",
               },
               {
-                key: pages.users.phone,
-                value: request?.user?.phone,
-                icon: <Phone className="details_icon" />,
-                type: "text",
-                dir:"ltr",
-              },
-              {
                 key: pages.users.email,
                 value: request?.user?.email,
                 icon: <Mail className="details_icon" />,
@@ -108,13 +101,6 @@ const page = async ({ params }: { params: { id: string, lang: "ar" | "en" } }) =
                 icon: <ImageIcon className="details_icon" />,
                 type: "img",
               },
-              {
-                key: pages.users.phone,
-                value: request?.watch_user?.phone,
-                icon: <Phone className="details_icon" />,
-                type: "text",
-                dir:"ltr",
-              }
             ]} title={pages.requestDetails.watchUserDetails} />
             {
               request?.drivers &&
@@ -131,13 +117,6 @@ const page = async ({ params }: { params: { id: string, lang: "ar" | "en" } }) =
                     value: (driver?.avatar || userAvatar),
                     icon: <ImageIcon className="details_icon" />,
                     type: "img",
-                  },
-                  {
-                    key: pages.users.phone,
-                    value: driver?.phone,
-                    icon: <Phone className="details_icon" />,
-                    type: "text",
-                    dir:"ltr",
                   },
                   {
                     key: pages.users.email,

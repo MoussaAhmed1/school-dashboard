@@ -43,18 +43,6 @@ export const columns: ColumnDef<IStudent>[] = [
     enableHiding: true,
   },
   {
-    accessorKey: "parentPhone",
-    header:"parentPhone",
-    cell: ({ row }) => (
-      row?.original?.parent ?
-    <div className="flex items-center gap-3">
-      <div className="flex flex-col items-start">
-        <span> {row?.original?.parent?.phone}</span>
-      </div>
-    </div>:"-"),
-    enableHiding: true,
-  },
-  {
     accessorKey: "parentEmail",
     header:"parentEmail",
     cell: ({ row }) => (
