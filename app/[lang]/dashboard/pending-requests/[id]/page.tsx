@@ -102,40 +102,6 @@ const page = async ({ params }: { params: { id: string, lang: "ar" | "en" } }) =
                 type: "img",
               },
             ]} title={pages.requestDetails.watchUserDetails} />
-            {
-              request?.drivers &&
-              request?.drivers?.map((driver, index) => (
-                <RequestDetails key={driver?.id} data={[
-                  {
-                    key: pages.users.name,
-                    value: driver?.name,
-                    icon: <User className="details_icon" />,
-                    type: "text",
-                  },
-                  {
-                    key: pages.users.avatar,
-                    value: (driver?.avatar || userAvatar),
-                    icon: <ImageIcon className="details_icon" />,
-                    type: "img",
-                  },
-                  {
-                    key: pages.users.email,
-                    value: driver?.email,
-                    icon: <Mail className="details_icon" />,
-                    type: "text",
-                    dir:"ltr",
-                  },
-                  {
-                    key: pages.requestDetails.joiningDate,
-                    value: convertUtcToLocal(driver?.created_at),
-                    icon: <Clock2 className="details_icon" />,
-                    type: "text",
-                    dir:"ltr",
-                  },
-
-                ]} title={pages.requestDetails.driverDetails + " " + (index+1)} />
-              ))
-            }
           </div>
         </div>
       </div>
