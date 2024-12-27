@@ -32,7 +32,7 @@ function RequestCard({ request, approveRequestArray }: IProps) {
                                 src={request?.watch_user?.avatar ?? ""}
                                 alt={request?.watch_user?.avatar ?? ""}
                             />
-                            <AvatarFallback>{request?.watch_user?.avatar[0]}</AvatarFallback>
+                            <AvatarFallback>{request?.watch_user?.name[0]}</AvatarFallback>
                         </Avatar>
                     </div>
                     <div>

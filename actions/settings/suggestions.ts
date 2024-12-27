@@ -9,12 +9,12 @@ export interface suggestionsBody {
   description: string;
   email: string;
 }
-export const AddSuggestions = async (formData: suggestionsBody): Promise<any> => {
+export const AddSuggestions = async (data: suggestionsBody): Promise<any> => {
   const lang = cookies().get("Language")?.value;
 
   try {
     const accessToken = cookies().get("access_token")?.value;
-    await axiosInstance.post("/suggestions-complaints", formData, {
+    await axiosInstance.post("/suggestions-complaints", data, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Accept-Language": lang,
