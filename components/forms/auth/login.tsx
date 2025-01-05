@@ -74,7 +74,7 @@ export default function LoginForm({ lang }: { lang: Language }) {
                                 </button>
                                 <p  className="mx-2 mt-2 text-sm font-bold text-primary"
                                 >
-                                <Link href="/forget-password" className="no-underline">
+                                <Link href="/auth/reset-password" className="no-underline">
                                     {
                                        lang === "en" ? "Forget password?" : "هل نسيت كلمة السر؟"
                                     }  

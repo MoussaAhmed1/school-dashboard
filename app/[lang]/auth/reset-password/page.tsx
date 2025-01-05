@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { useTranslations } from 'next-intl'
 import { useToast } from '@/components/ui/use-toast'
 import axiosInstance from '@/utils/axios-client'
+import Link from 'next/link'
 
 export default function PasswordResetForm() {
   const [email, setEmail] = useState('')
@@ -70,13 +71,12 @@ export default function PasswordResetForm() {
               {isLoading ? '...' : tShared("submit")}
             </Button>
             <div className="text-center">
-              <Button
-                variant="link"
+            <Link
                 className="text-sm text-muted-foreground hover:text-primary"
-                onClick={() => window.history.back()}
+                href={"/"}
               >
                 {tShared("returnToSignIn")}
-              </Button>
+              </Link>
             </div>
           </form>
         </CardContent>
