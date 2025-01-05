@@ -1,54 +1,87 @@
-"use client"
-import { FC } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
-import { useToast } from '@/components/ui/use-toast';
+'use client'
 
-// Zod schema for email validation
-const emailSchema = z.object({
-  email: z.string().email('Invalid email address').nonempty('Email is required'),
-});
+import { useState } from 'react'
+import { Lock } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { useTranslations } from 'next-intl'
+import { useToast } from '@/components/ui/use-toast'
+import axiosInstance from '@/utils/axios-client'
 
-type EmailFormData = {
-  email: string;
-};
-
-const ResetPasswordEmailPage: FC = ({ lang }: { lang: Language }) => {
-    const tShared = useTranslations('shared');
-    const router = useRouter();
-    const { toast } = useToast();
-  const { register, handleSubmit, formState: { errors } } = useForm<EmailFormData>({
-    resolver: zodResolver(emailSchema),
-  });
-
-  const onSubmit = (data: EmailFormData) => {
-    // Handle email submission (e.g., send a request to backend to send reset email)
-    alert(`'Email submitted:' ${data.email}`);
-    // Redirect to the next page (reset password form)
-  };
+export default function PasswordResetForm() {
+  const [email, setEmail] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const tShared = useTranslations('shared');
+  const { toast } = useToast();
+  
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setIsLoading(true)
+    // Simulate API call
+     e.preventDefault();
+            try {
+                const res = await axiosInstance.post("/auth/request-reset-password", { email });
+                toast({
+                  variant: "default",
+                  title: tShared("successMsg"),
+                });
+            } catch (error:any) {
+              console.log(error);
+              toast({
+                variant: "destructive",
+                title: tShared("somthingwentwrong"),
+                description: error?.message,
+              });
+            }
+    setIsLoading(false)
+    // Handle password reset logic here
+  }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-2xl mb-4">{tShared('resetPassword')}</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-sm">
-        <div className="mb-4">
-          <Input
-            id="email"
-            type="email"
-            placeholder={tShared("Enteryouremail")}
-            {...register('email')}
-          />
-        <span className='text-red-500 w-fit text-sm py-1 px-3 rounded-md mt-1'>{errors.email?.message}</span>
-        </div>
-        <Button type="submit" className="m-0 p-0 w-full max-w-sm">{tShared("submit")}</Button>
-      </form>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 to-pink-50">
+      <Card className="w-full max-w-md mx-4">
+        <CardHeader className="space-y-2 text-center">
+          <div className="w-16 h-16 mx-auto bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+            <Lock className="w-8 h-8 text-white" />
+          </div>
+          <h1 className="text-2xl font-semibold tracking-tight">{tShared('resetPassword')}</h1>
+          <p className="text-sm text-muted-foreground">
+           {tShared("resetPasswordInstruction")}
+          </p>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Input
+                type="email"
+                placeholder={tShared("Enteryouremail")}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full"
+              />
+            </div>
+            <Button
+              type="submit"
+              className="m-0 p-0 w-full "
+              disabled={isLoading}
+            >
+              {isLoading ? '...' : tShared("submit")}
+            </Button>
+            <div className="text-center">
+              <Button
+                variant="link"
+                className="text-sm text-muted-foreground hover:text-primary"
+                onClick={() => window.history.back()}
+              >
+                {tShared("returnToSignIn")}
+              </Button>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
     </div>
-  );
-};
+  )
+}
 
-export default ResetPasswordEmailPage;

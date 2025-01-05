@@ -38,10 +38,13 @@
     "add": "Add",
     "resetPassword": "reset password",
     "Enteryouremail": "Enter your email",
-    "successMsg": "Check your inbox for a password reset email from Symlink follow the instructions, and also check your spam/junk folder if not found.",
+    "successMsg": "Check your inbox for a password reset email from NADNEE follow the instructions, and also check your spam/junk folder if not found.",
     "submit": "Send",
+    "resetPasswordInstruction": "Please enter the email address associated with your account and we will email you a secret key to reset your password.",
+    "returnToSignIn": "Return to sign in",
     "Forgotpassword ?": "Forgot Password",
-    "email": "Email", 
+    "somthingwentwrong": "Uh oh! Something went wrong.",
+    "email": "Email",
     "details": "Details",
     "update": "Update",
     "edit": "Edit",
@@ -356,7 +359,6 @@
       "editSecurity": "Edit Supervisor",
       "viewUser": "View User",
       "editUser": "Edit User"
-
     },
     "users": {
       "Admins": "Admins",
@@ -477,7 +479,6 @@
       "editUser": "Edit User",
       "editSecurity": "Edit Supervisor",
       "viewSecurity": "View Supervisor"
-
     },
     "requestDetails": {
       "title": "Request Details",

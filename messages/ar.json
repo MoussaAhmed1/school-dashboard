@@ -32,7 +32,8 @@
     "noRequests": "لا يوجد طلبات",
     "continue": "متابعة",
     "reason_to_cancel": "سبب الإلغاء",
-
+    "resetPasswordInstruction": "يرجى إدخال عنوان البريد الإلكتروني المرتبط بحسابك وسنرسل لك مفتاحًا سريًا لإعادة تعيين كلمة المرور.",
+    "returnToSignIn": "العودة لتسجيل الدخول",
     "add_new": "إضافة جديد",
     "dashboard": "لوحة التحكم",
     "create": "اضافة",
@@ -41,10 +42,11 @@
     "edit": "تعديل",
     "resetPassword": "تغير كلمة السر",
     "Enteryouremail": "ادخل بريدك الالكتروني",
-    "successMsg": "تم ارسال ايميل الي صندوق ",
+    "successMsg": "تحقق من صندوق الوارد لديك ، واتبع التعليمات، وتحقق أيضًا من مجلد البريد العشوائي/غير الهام إذا لم تجده.",
+    "somthingwentwrong": "هناك خطأ ما",
     "submit": "ارسال",
     "Forgotpassword ?": "نسيت كلمة المرور ؟",
-    "email": "البريد الاليكتروني",  
+    "email": "البريد الاليكتروني",
     "saveChanges": "حفظ التغييرات",
     "updateFailed": "فشل التحديث",
     "addFailed": "فشل الإضافة",
@@ -358,7 +360,6 @@
       "socialLinkCreated": "تم إنشاء الرابط الاجتماعي.",
       "editUser": "تعديل المستخدم",
       "viewUser": "عرض المستخدم"
-
     },
     "users": {
       "Admins": "المديرون",
@@ -450,7 +451,6 @@
       "selectSchool": "حدد المدرسة",
       "editSecurity": "تعديل مشرف",
       "viewSecurity": "عرض مشرف"
-
     },
     "requestDetails": {
       "title": "تفاصيل الطلب ",
