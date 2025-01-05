@@ -98,9 +98,9 @@ function PendingRequestsList({ _requests=[], status,pageCount }: IProps) {
                     </div>
       
                   )}
-            {
+            {/* {
             <LoadMore btnTitle={t("loadMore")} page={page} setPage={setPage} pageCount={pageCount} approveRequestArray={approveRequestArray} requests={requests} setRequests={setRequests}/>
-            }
+            } */}
         </div>
     )
 }
