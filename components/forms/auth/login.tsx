@@ -9,6 +9,7 @@ import Image from "next/image";
 import { ModeToggle } from "@/components/ui/theme-toggler";
 import { Language } from "@/utils/changeLanguageHandler";
 import LocaleSwitcher from "@/components/shared/locale-switcher";
+import Link from "next/link";
 
 export default function LoginForm({ lang }: { lang: Language }) {
     const [email, setEmail] = useState("");
@@ -71,6 +72,14 @@ export default function LoginForm({ lang }: { lang: Language }) {
                                      }  
                                     </span>
                                 </button>
+                                <p  className="mx-2 mt-2 text-sm font-bold text-primary"
+                                >
+                                <Link href="/forget-password" className="no-underline">
+                                    {
+                                       lang === "en" ? "Forget password?" : "هل نسيت كلمة السر؟"
+                                    }  
+                                </Link>
+                                </p>
                                 <p className="mt-6 text-xs text-gray-600 text-center">
                                     {error && (
                                         <div className="text-red-500 w-fit text-sm py-1 px-3 rounded-md mt-2">

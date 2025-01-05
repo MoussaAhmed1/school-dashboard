@@ -39,7 +39,12 @@
     "details": "التفاصيل",
     "update": "تحديث",
     "edit": "تعديل",
-
+    "resetPassword": "تغير كلمة السر",
+    "Enteryouremail": "ادخل بريدك الالكتروني",
+    "successMsg": "تم ارسال ايميل الي صندوق ",
+    "submit": "ارسال",
+    "Forgotpassword ?": "نسيت كلمة المرور ؟",
+    "email": "البريد الاليكتروني",  
     "saveChanges": "حفظ التغييرات",
     "updateFailed": "فشل التحديث",
     "addFailed": "فشل الإضافة",
