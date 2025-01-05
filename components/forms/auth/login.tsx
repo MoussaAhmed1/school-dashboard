@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { use, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import logo from "../../../public/assets/logo/logo-login.png";
@@ -10,11 +10,13 @@ import { ModeToggle } from "@/components/ui/theme-toggler";
 import { Language } from "@/utils/changeLanguageHandler";
 import LocaleSwitcher from "@/components/shared/locale-switcher";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function LoginForm({ lang }: { lang: Language }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const tShared = useTranslations("shared");
 
     const router = useRouter();
 
@@ -52,10 +54,11 @@ export default function LoginForm({ lang }: { lang: Language }) {
                             <form onSubmit={handleSubmit} className="mx-auto max-w-xs">
                                 <input
                                     className="w-full px-4 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                    type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+                                    type="email" placeholder={tShared("email") as string} onChange={(e) => setEmail(e.target.value)} />
                                 <input
                                     className="w-full px-4 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                    type="password" placeholder="Password"
+                                    type="password"     placeholder={tShared("password") as string}
+
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                                 <button
