@@ -13,7 +13,6 @@ import { useRouter } from "next/navigation";
 import Cookie from 'js-cookie';
 import { removeUser } from "@/actions/users/users-actions";
 import { useTranslations } from "next-intl";
-import Approve from "@/components/shared/table/Approve";
 
 interface CellActionProps {
   data: IWatch;

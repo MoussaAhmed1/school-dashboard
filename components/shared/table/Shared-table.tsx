@@ -37,6 +37,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import SearchInput from "./SearchInput";
 import { DataTableToolbar } from "./DataTableToolbar";
 import { useTranslations } from "next-intl";
+import RefreshButton from "@/components/tables/refresh-btn/revalidateBtn";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -178,6 +179,7 @@ return (
       <SearchInput searchKey={searchKey} />
       {children}
     </DataTableToolbar>}
+    <RefreshButton/>
     <ScrollArea className="border h-[calc(73.8dvh)]  rounded-md">
       <Table className="relative p-1" style={{ direction: pathname?.split("/")?.includes("ar") ? "rtl" : "ltr" }}>
         <TableHeader className="bg-[#F1F5F9] dark:bg-[#1E293B]" style={{ fontWeight: "700 !important", lineHeight: '1.5rem !important', }}>
