@@ -11,6 +11,7 @@ export interface ILogedUser {
   birth_date: string;
   gender: string;
   school_id: string;
+  city_id: string;
   language: string;
   fcm_token: any;
   access_token: string;
@@ -140,3 +141,9 @@ enum Kinship {
 }
 
 export default Kinship;
+
+export interface ICity {
+  id: string;
+  name: string;
+  code: string;
+}

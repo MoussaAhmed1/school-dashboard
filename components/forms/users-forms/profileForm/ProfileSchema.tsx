@@ -5,6 +5,7 @@ const ProfileSchema = z.object({
   name : z.string().min(1, "Full name is required"),
   birth_date: validationRules.date,
   gender: z.enum(["male", "female"]),
+  city_id: z.string().optional(),
   phone: validationRules.phone,
   avatarFile: validationRules.image.optional(),
   email: z.string().email({ message: "Invalid email address" }),

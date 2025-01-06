@@ -161,3 +161,21 @@ export const UpdateAdminProfile = async (formData: FormData): Promise<any> => {
       };
     }
   };
+
+  export const fetchCities = async (): Promise<any> => {
+    const lang = cookies().get("Language")?.value;
+    const accessToken = cookies().get("access_token")?.value;
+    try {
+      const res = await axiosInstance.get(endpoints.users.cities, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Accept-Language": lang,
+        },
+      });
+      return(res.data.data)
+    } catch (error: any) {
+      return {
+        error: getErrorMessage(error),
+      };
+    }
+  };

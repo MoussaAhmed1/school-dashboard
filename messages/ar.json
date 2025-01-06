@@ -454,6 +454,8 @@
       "school": "المدرسة",
       "selectSchool": "حدد المدرسة",
       "editSecurity": "تعديل مشرف",
+      "city": "المدينة",
+      "selectCity": "حدد المدينة",
       "viewSecurity": "عرض مشرف"
     },
     "requestDetails": {

@@ -6,11 +6,13 @@ import { ILogedUser } from "@/types/users";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/_options";
 import { getDictionary } from "../../messages";
+import { fetchCities } from "@/actions/users/users-actions";
 
 export default async function ProfilePage({params}:{params:{lang:"ar"|"en"}}) {
   const session: { user: ILogedUser } | null = await getServerSession(authOptions) as any;
   const {pages} = await getDictionary(params?.lang)
   const breadcrumbItems = [{ title: pages.users.profile, link: "/dashboard/profile" }];
+ const cities = await fetchCities();
   return (
     <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
       <BreadCrumb items={breadcrumbItems} />
@@ -25,8 +27,10 @@ export default async function ProfilePage({params}:{params:{lang:"ar"|"en"}}) {
           phone: session?.user?.phone,
           avatarFile: session.user?.avatar,
           email: session?.user?.email,
-          name: session?.user?.name
+          name: session?.user?.name,
+          // city_id: session?.city_id,
         } : undefined}
+        cities={cities}
         revalidatequery="/dashboard/admins"
       />
     </div>

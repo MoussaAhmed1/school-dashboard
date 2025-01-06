@@ -10,22 +10,21 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Select as ShadcnSelect, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
 import { useToast } from "../../../ui/use-toast";
 import { Card } from "@/components/ui/card";
 import ProfileSchema from "./ProfileSchema";
-// import { toFormData } from "axios";
 import AvatarPreview from "@/components/shared/AvatarPreview";
+import { Select as ShadcnSelect, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup } from "@/components/ui/select";
 import InputDate from "@/components/shared/timepicker/InputDate";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { reloadSession } from "@/lib/funcs";
 import { useTranslations } from "next-intl";
 import { toFormData } from "axios";
-import { ILogedUser } from "@/types/users";
+import { ICity, ILogedUser } from "@/types/users";
 import { UpdateAdminProfile } from "@/actions/users/users-actions";
 
 export type UserFormValues = z.infer<typeof ProfileSchema>;
@@ -33,6 +32,7 @@ export type UserFormValues = z.infer<typeof ProfileSchema>;
 interface UserFormProps {
   initialData?: UserFormValues;
   id: string;
+  cities?: ICity[];
   revalidatequery: string;
   isAllowToModifyPermissions?: boolean;
 }
@@ -40,6 +40,7 @@ interface UserFormProps {
 
 export const UserProfileForm: React.FC<UserFormProps> = ({
   initialData,
+  cities,
 }) => {
   // const { toast } = useToast();
   const t = useTranslations("pages.users");
@@ -78,6 +79,10 @@ export const UserProfileForm: React.FC<UserFormProps> = ({
       setSelectedAvatar(initialData?.avatarFile)
     }
   }, [initialData])
+
+  // useEffect(() => {
+  //     form.setValue("city_id", initialData?.city_id);
+  // }, [form]);
 
 
   const onSubmit = async (data: UserFormValues) => {
@@ -218,6 +223,26 @@ export const UserProfileForm: React.FC<UserFormProps> = ({
                   </FormItem>
                 )}
               />
+              {/* city */}
+              {/* < FormField name="city_id" control={control} render={({ field }) => (
+                  <FormItem >
+                    <FormLabel>{t("city")} <span className="text-red-800">*</span></FormLabel>
+                    <FormControl >
+                        <ShadcnSelect required {...field} onValueChange={field.onChange} dir={currentLang === "ar" ? "rtl" : "ltr"}>
+                          <SelectTrigger>
+                            <SelectValue placeholder={t("selectCity")} />
+                          </SelectTrigger>
+                          <SelectContent className="max-h-[200px]">
+                          <SelectGroup>
+                            {cities?.map((city) => (
+                              <SelectItem value={city?.id} key={city?.id}>{city?.name}</SelectItem>
+                            ))}
+                            </SelectGroup>
+                          </SelectContent>
+                        </ShadcnSelect>
+                    </FormControl>
+                  </FormItem>
+                )} /> */}
               {/* Avatar */}
               <FormItem
                 style={{

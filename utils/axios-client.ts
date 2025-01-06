@@ -81,6 +81,7 @@ export const endpoints = {
     register:"/auth/register",
     delete:"/user/delete",
     update:"/user/update-profile",
+    cities:"/auth/cities",
   },
   watches:{
     fetch:"/watch/get-all-IMEI",

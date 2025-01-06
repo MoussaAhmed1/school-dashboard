@@ -53,6 +53,7 @@ export const authOptions = {
       if (trigger === "update") {
         return { ...token, ...session.user };
       }
+      console.log("user", user);
       if (user) {
         token.username = user.data?.username;
         token.name = user.data?.name;
@@ -63,6 +64,7 @@ export const authOptions = {
         token.image = user.data?.avatar;
         token.birth_date = user.data?.birth_date;
         token.id = user.data?.id;
+        // token.city_id = user.data?.school?.city_id;
         token.accessToken = user.data?.access_token;
         const lang = cookies().get("Language")?.value || cookies().get("lang")?.value||"ar";
         cookies().set("Language", lang , {path: "/"});
@@ -73,6 +75,7 @@ export const authOptions = {
           secure: true,
         });
         cookies().set("school_id", user.data?.school_id);
+        // cookies().set("city_id", user.data?.school.city_id);
       }
       return token;
     },
@@ -86,6 +89,8 @@ export const authOptions = {
         session.user.image = newSession.avatar;
         session.user.phone = newSession.phone;
         session.user.gender = newSession.gender;
+        // session.user.city_id = newSession.city_id;
+
         session.user.birth_date = newSession.birth_date;
       }
       return session;
