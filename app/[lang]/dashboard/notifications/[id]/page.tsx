@@ -41,30 +41,30 @@ const page = async ({ params }: {
           </CardHeader>
           <CardContent>
             <CardDescription>
-              <ul style={{ listStyle: 'none', paddingLeft: 0, display: "flex", flexDirection: "column", gap: 5, fontSize: 15 }} className="text-gray-600 dark:text-gray-200">
+              <ul style={{ listStyle: 'none', paddingLeft: 0, display: "flex", flexDirection: "column", gap: 5, fontSize: 15 }} className="text-gray-700 dark:text-gray-400">
                 <li style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
                   <Info style={{ marginRight: '0.5rem',marginLeft:"0.5rem" }} />
-                  {pages.notification.englishTitle}: {notification?.title_en ?? " - "}
+                  <span className={"text-gray-900 font-bold dark:text-white"}>{pages.notification.englishTitle}</span>: {notification?.title_en ?? " - "}
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
                   <Info style={{ marginRight: '0.5rem',marginLeft:"0.5rem" }} />
-                  {pages.notification.arabicTitle}: {notification?.title_ar ?? " - "}
+                  <span className={"text-gray-900 font-bold dark:text-white"}>{pages.notification.arabicTitle}</span>: {notification?.title_ar ?? " - "}
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
                   <Info style={{ marginRight: '0.5rem',marginLeft:"0.5rem" }} />
-                  {pages.notification.englishText}: {notification?.text_en ?? " - "}
+                  <span className={"text-gray-900 font-bold dark:text-white"}>{pages.notification.englishText}</span>: {notification?.text_en ?? " - "}
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
                   <Info style={{ marginRight: '0.5rem',marginLeft:"0.5rem" }} />
-                  {pages.notification.arabicText}: {notification?.text_ar ?? " - "}
+                  <span className={"text-gray-900 font-bold dark:text-white"}>{pages.notification.arabicText}</span>: {notification?.text_ar ?? " - "}
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
                   <CheckCircle style={{ marginRight: '0.5rem',marginLeft:"0.5rem" }} />
-                  {pages.notification.isRead}: {notification?.is_read ? pages.notification.yes : pages.notification.no}
+                  <span className={"text-gray-900 font-bold dark:text-white"}>{pages.notification.isRead}</span>: {notification?.is_read ? pages.notification.yes : pages.notification.no}
                 </li>
-                <li style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }} className="rtl:text-right text-left" dir="ltr">
+                <li style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }} className="rtl:text-right text-left" >
                   <Info style={{ marginRight: '0.5rem',marginLeft:"0.5rem" }} />
-                  {pages.notification.createdAt}: {convertUtcToLocal(notification?.created_at)}
+                  <span className={"text-gray-900 font-bold dark:text-white"}>{pages.notification.createdAt}</span>: {convertUtcToLocal(notification?.created_at)}
                 </li>
               </ul>
             </CardDescription>
