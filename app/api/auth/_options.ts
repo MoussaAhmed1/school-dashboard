@@ -32,10 +32,14 @@ export const authOptions = {
             }),
             headers: { "Content-Type": "application/json" },
           });
-          const user:ILogedUser = await res.json();
-          if (res.ok) {
+          const user:any = await res.json();
+          if(user?.data?.role as any !== "SCHOOL"){
+            return null;
+          }
+          else if (res.ok) {
             return user;
-          } else {
+          }
+          else {
             return null;
           }
         } catch (error) {
@@ -53,7 +57,6 @@ export const authOptions = {
       if (trigger === "update") {
         return { ...token, ...session.user };
       }
-      console.log("user", user);
       if (user) {
         token.username = user.data?.username;
         token.name = user.data?.name;

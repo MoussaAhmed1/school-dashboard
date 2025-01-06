@@ -11,6 +11,7 @@ export interface ILogedUser {
   birth_date: string;
   gender: string;
   school_id: string;
+  role: string;
   city_id: string;
   language: string;
   fcm_token: any;
