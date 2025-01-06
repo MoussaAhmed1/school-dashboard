@@ -32,7 +32,7 @@ const page = async ({ params }: { params: { id: string, lang: "ar" | "en" } }) =
         <div className="flex items-baseline justify-between mx-5">
           <Heading
             title={pages.requestDetails.title}
-            description={`${convertUtcToLocal(request.updated_at)} - ${request?.status}`}
+            description={`${convertUtcToLocal(request?.updated_at)} - ${request?.status}`}
           />
         </div>
         <div className="p-4">
