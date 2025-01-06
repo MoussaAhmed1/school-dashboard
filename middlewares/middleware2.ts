@@ -10,18 +10,17 @@ import { cookies } from "next/headers";
 
 function getLocale(request: NextRequest): string | undefined {
   const lang = cookies().get("Language")?.value|| cookies().get("lang")?.value||"ar";
-  if (lang) {
     return lang;
-  }
-  const negotiatorHeaders: Record<string, string> = {};
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
+  
+  // const negotiatorHeaders: Record<string, string> = {};
+  // request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
-  // @ts-ignore locales are readonly
-  const locales: string[] = i18n.locales;
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
+  // // @ts-ignore locales are readonly
+  // const locales: string[] = i18n.locales;
+  // const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
 
-  const locale = matchLocale(languages, locales, i18n.defaultLocale);
-  return locale;
+  // const locale = matchLocale(languages, locales, i18n.defaultLocale);
+  // return locale;
 }
 
 export function middleware(request: NextRequest) {
