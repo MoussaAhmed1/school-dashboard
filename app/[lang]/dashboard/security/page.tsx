@@ -1,8 +1,9 @@
-import { fetchSecurity } from "@/actions/users/users-actions";
+import { fetchSchoolGrades, fetchSecurity } from "@/actions/users/users-actions";
 import { getDictionary } from "@/app/[lang]/messages";
 import BreadCrumb from "@/components/breadcrumb";
+import SecurityView from "@/components/details/SecurityView";
 import { SharedTable } from "@/components/shared/table/Shared-table";
-import { columns } from "@/components/tables/users-tables/security/columns";
+import { Columns } from "@/components/tables/users-tables/security/columns";
 import { buttonVariants } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
@@ -31,6 +32,7 @@ export default async function page({ searchParams,params }: paramsProps) {
     role: Role.security,
     filters: search,
   });
+  const schoolGrades = await fetchSchoolGrades();
   const totalUsers = res?.data?.meta?.total || 0; //1000
   const pageCount = Math.ceil(totalUsers / limit);
   const users: IUser[] = res?.data?.data || [];
@@ -54,15 +56,13 @@ export default async function page({ searchParams,params }: paramsProps) {
         </div>
         <Separator />
 
-        <SharedTable
-          searchKey="security"
-          pageNo={page}
-          columns={columns}
-          totalitems={totalUsers}
-          data={users as unknown as IUser[]}
+        <SecurityView
+          page={page}
+          users={users as unknown as IUser[]}
+          totalUsers={totalUsers}
           pageCount={pageCount}
-        >
-        </SharedTable>
+          schoolGrades={schoolGrades}
+        />
       </div>
     </>
   );

@@ -66,5 +66,15 @@ export const columns: ColumnDef<IStudent>[] = [
     </div>:"-"),
     enableHiding: true,
   },
+  {
+    accessorKey: "grade",
+    header:"grade",
+    cell: ({ row }) => (
+      <p >
+        {row?.original?.grade?.name}
+      </p>
+),
+    enableHiding: true,
+  },
 ];
 

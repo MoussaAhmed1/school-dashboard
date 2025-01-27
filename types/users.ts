@@ -44,8 +44,15 @@ export interface IStudent {
   school: School
   drivers: Driver[]
   parent: Parent
+  grade: Grade
 }
-
+export interface Grade {
+    id: string
+    name: string
+    order_by: number
+    academic_stage: string
+  
+}
 export interface School {
   id: string
   name: string

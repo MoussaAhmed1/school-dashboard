@@ -179,3 +179,56 @@ export const UpdateAdminProfile = async (formData: FormData): Promise<any> => {
       };
     }
   };
+  export const fetchSchoolGrades = async (): Promise<any> => {
+    const lang = cookies().get("Language")?.value;
+    const accessToken = cookies().get("access_token")?.value;
+    const schoolId = cookies().get("school_id")?.value;
+    try {
+      const res = await axiosInstance.get(`/auth/school/grades/${schoolId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Accept-Language": lang,
+        },
+      });
+      return(res.data.data)
+    } catch (error: any) {
+      return {
+        error: getErrorMessage(error),
+      };
+    }
+  };
+  export const fetchUserGrades = async (user_id:string): Promise<any> => {
+    const lang = cookies().get("Language")?.value;
+    const accessToken = cookies().get("access_token")?.value;
+    try {
+      const res = await axiosInstance.get(`/user/${user_id}/grades`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Accept-Language": lang,
+        },
+      });
+      return(res.data.data)
+    } catch (error: any) {
+      return {
+        error: getErrorMessage(error),
+      };
+    }
+  };
+
+  export const postUserGrades = async (user_id:string,grades_ids:string[]): Promise<any> => {
+    const lang = cookies().get("Language")?.value;
+    const accessToken = cookies().get("access_token")?.value;
+    try {
+      const res = await axiosInstance.post(`/auth/add/security/grade`,{user_id,grades_ids}, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Accept-Language": lang,
+        },
+      });
+      return(res.data.data)
+    } catch (error: any) {
+      return {
+        error: getErrorMessage(error),
+      };
+    }
+  };

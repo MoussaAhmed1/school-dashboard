@@ -38,7 +38,6 @@ function LoadMore({
       setRequests([...res?.data?.data,...requests ]);
       setPage(page + 1);
     } catch (error) {
-      console.log(error)
     }
     setIsLoading(false);
   };

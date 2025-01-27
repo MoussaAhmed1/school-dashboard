@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { IUser } from "@/types/users";
-import { Edit, MoreHorizontal, Trash, Eye } from "lucide-react";
+import { Edit, MoreHorizontal, Trash, Eye, FileKey2 } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { removeUser } from "@/actions/users/users-actions";
 import { useTranslations } from "next-intl";
@@ -9,13 +9,16 @@ import { AlertModal } from "@/components/modal/alert-modal";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import UserFormAction from "@/components/forms/users-forms/editUser";
+import GradesForm from "@/components/forms/users-forms/permissionsDialog";
 
 interface CellActionProps {
   data: IUser;
   toBeVerified?: boolean;
+  // grades_ids: string[];
+  options: {id:string,name:string}[];
 }
 
-export const CellAction: React.FC<CellActionProps> = ({ data, toBeVerified = false }) => {
+export const CellAction: React.FC<CellActionProps> = ({ data,options }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -63,6 +66,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data, toBeVerified = fal
         >
           <Trash className="h-4 w-4" />
         </Button>
+        <GradesForm user_id={data?.id}  options={options}/>
         <UserFormAction user={data} id={data.id} />
       </div>
     </div>

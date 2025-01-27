@@ -137,7 +137,8 @@
     "parent": "ولي الامر",
     "parentEmail": "ايميل ولي الامر",
     "parentPhone": "هاتف ولي الامر",
-    "driver": "المستخدمين الفرعيين"
+    "driver": "المستخدمين الفرعيين",
+      "grade": "الصف"
   },
   "pages": {
     "home": {
@@ -456,7 +457,11 @@
       "editSecurity": "تعديل مشرف",
       "city": "المدينة",
       "selectCity": "حدد المدينة",
-      "viewSecurity": "عرض مشرف"
+      "viewSecurity": "عرض مشرف",
+      "editUser": "تعديل المستخدم",
+      "selectGrade": "اختر المرحلة الدراسية",
+      "grade": "المرحلة الدراسية",
+      "updateGrades": "تحديث المراحل الدراسية"
     },
     "requestDetails": {
       "title": "تفاصيل الطلب ",

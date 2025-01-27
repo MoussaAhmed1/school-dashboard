@@ -135,7 +135,8 @@
     "parent": "Parent",
     "parentEmail": "Parent Email",
     "parentPhone": "Parent Phone",
-    "driver": "Sub User Count"
+    "driver": "Sub User Count",
+      "grade": "Grade"
   },
   "pages": {
     "home": {
@@ -484,7 +485,10 @@
       "selectSchool": "Select School",
       "editUser": "Edit User",
       "editSecurity": "Edit Supervisor",
-      "viewSecurity": "View Supervisor"
+      "viewSecurity": "View Supervisor",
+      "selectGrade": "Select Grade",
+      "grade": "Grade",
+      "updateGrades": "Update Grades"
     },
     "requestDetails": {
       "title": "Request Details",
