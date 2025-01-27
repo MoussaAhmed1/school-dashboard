@@ -461,7 +461,9 @@
       "editUser": "تعديل المستخدم",
       "selectGrade": "اختر المرحلة الدراسية",
       "grade": "المرحلة الدراسية",
-      "updateGrades": "تحديث المراحل الدراسية"
+      "updateGrades": "تحديث المراحل الدراسية",
+    "requestApprovedSuccessfully": "تمت الموافقة على الطلب بنجاح"
+
     },
     "requestDetails": {
       "title": "تفاصيل الطلب ",

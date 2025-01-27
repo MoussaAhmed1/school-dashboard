@@ -13,9 +13,11 @@ export interface HistoryOfRequests {
   is_parent: boolean;
   driver: any;
   parent: Parent;
+  grade: { id: string, name: string }
 }
 
 export interface ISingleRequest {
+  grade: { id: string, name: string }
   id: string;
   created_at: string;
   updated_at: string;

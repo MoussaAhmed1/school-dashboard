@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import BreadCrumb from "@/components/breadcrumb";
-import {  Image as ImageIcon, User, Mail, Clock2, BadgeCheck, Hash } from "lucide-react";
+import {  Image as ImageIcon, User, Mail, Clock2, BadgeCheck, Hash, GraduationCap } from "lucide-react";
 import { Heading } from "@/components/ui/heading";
 import { ISingleRequest } from "@/types/watches/requests";
 import { fetchSingleRequest } from "@/actions/requests/requests-history-actions";
@@ -100,6 +100,12 @@ const page = async ({ params }: { params: { id: string, lang: "ar" | "en" } }) =
                 value: (request?.watch_user?.avatar || userAvatar),
                 icon: <ImageIcon className="details_icon" />,
                 type: "img",
+              },
+              {
+                key: pages.users.grade,
+                value: (request?.grade?.name),
+                icon: <GraduationCap  className="details_icon" />,
+                type: "text",
               },
             ]} title={pages.requestDetails.watchUserDetails} />
           </div>
