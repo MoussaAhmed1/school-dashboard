@@ -70,8 +70,6 @@ export const UserProfileForm: React.FC<UserFormProps> = ({
     }
   };
   const defaultValues = {
-    birth_date: initialData?.birth_date,
-    gender: initialData?.gender,
     phone: initialData?.phone,
     email: initialData?.email,
     name: initialData?.name,
@@ -149,7 +147,6 @@ export const UserProfileForm: React.FC<UserFormProps> = ({
           avatar: newUser?.avatar,
           phone: newUser?.phone,
           email: newUser?.email,
-          birth_date: newUser?.birth_date,
         },
       });
       reloadSession();
@@ -190,56 +187,6 @@ export const UserProfileForm: React.FC<UserFormProps> = ({
                       />
                     </FormControl>
                     <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="flex w-full justify-end flex-col items-start gap-1">
-                <label htmlFor="date" className="font-medium text-sm">
-                  {t("birthDate")} <span className="text-red-800">*</span>
-                </label>
-                <div className="flex-col w-full">
-                  <InputDate
-                    value={form.getValues("birth_date")}
-                    onChange={(val) => {
-                      form.setValue("birth_date", val);
-                    }}
-                    disableFuture
-                    maxWidth={"100%"}
-                  />
-                  {errors.birth_date && (
-                    <span className="error-text">
-                      {errors.birth_date.message}
-                    </span>
-                  )}
-                </div>
-              </div>
-              {/* Gender */}
-              <FormField
-                name="gender"
-                control={control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>
-                      {t("gender")} <span className="text-red-800">*</span>
-                    </FormLabel>
-                    <FormControl>
-                      <ShadcnSelect
-                        {...field}
-                        onValueChange={field.onChange}
-                        dir={currentLang === "ar" ? "rtl" : "ltr"}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder={t("selectGender")} />
-                        </SelectTrigger>
-                        <SelectContent className="max-h-[200px]">
-                          <SelectItem value="male">{t("male")}</SelectItem>
-                          <SelectItem value="female">{t("female")}</SelectItem>
-                        </SelectContent>
-                      </ShadcnSelect>
-                    </FormControl>
-                    {errors.gender && (
-                      <FormMessage>{errors.gender.message}</FormMessage>
-                    )}
                   </FormItem>
                 )}
               />

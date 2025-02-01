@@ -65,7 +65,6 @@ export const authOptions = {
         token.gender = user.data?.gender;
         token.avatar = user.data?.avatar;
         token.image = user.data?.avatar;
-        token.birth_date = user.data?.birth_date;
         token.id = user.data?.id;
         // token.city_id = user.data?.school?.city_id;
         token.accessToken = user.data?.access_token;
@@ -91,10 +90,8 @@ export const authOptions = {
         session.user.email = newSession.email;
         session.user.image = newSession.avatar;
         session.user.phone = newSession.phone;
-        session.user.gender = newSession.gender;
         // session.user.city_id = newSession.city_id;
 
-        session.user.birth_date = newSession.birth_date;
       }
       return session;
     },

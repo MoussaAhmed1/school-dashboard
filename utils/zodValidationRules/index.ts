@@ -17,7 +17,6 @@ const validationRules = {
   // string
   string_en: z
     .string()
-    .regex(/^[a-zA-Z0-9\s.,;:?!()\-\[\]{}@#$%^&*+=_~'"<>]+$/, { message: "Must be English characters only" })
     .min(3, { message: "must be at least 3 characters" }),
   string_ar: z
     .string()
@@ -77,7 +76,9 @@ const validationRules = {
     })
   ]).optional(),
   //phone 
-  phone:z.string().regex(/^\+\d{12}$/, "Phone number must be exactly 13 characters, starting with a plus sign followed by 12 digits"),
+  phone:z
+  .string()
+  .min(3, { message: "must be at least 3 characters" }),
   //lat and long
   latLng: z
     .number({
