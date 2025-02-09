@@ -15,7 +15,7 @@ import { Box } from "lucide-react";
 
 interface IProps {
     _requests: HistoryOfRequests[];
-    status: "COMPLETED" | "PENDNING";
+    status: "COMPLETED" | "PENDNING"| "CONFIRMED";
     pageCount:number;
 }
 

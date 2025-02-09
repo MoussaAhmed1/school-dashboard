@@ -11,6 +11,7 @@
     "watches": "Watches",
     "security": "Supervisors",
     "historyOfRequests": "Completed requests",
+    "confirmedRequests": "Confirmed requests",
     "general_settings": "Policies & Information",
     "messages": "Messages",
     "notifications": "Notifications",

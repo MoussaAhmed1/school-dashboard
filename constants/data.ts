@@ -20,6 +20,13 @@ export const navItems: NavItem[] = [
     subItems: false,
   },
   {
+    title: "confirmedRequests",
+    href: "/dashboard/confirmed-requests",
+    icon: "trello",
+    label: "confirmedRequests",
+    subItems: false,
+  },
+  {
     title: "historyOfRequests",
     href: "/dashboard/history-of-requests",
     icon: "trello",
