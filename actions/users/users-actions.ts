@@ -232,3 +232,39 @@ export const UpdateAdminProfile = async (formData: FormData): Promise<any> => {
       };
     }
   };
+
+  export const fetchWorkHours = async (): Promise<any> => {
+    const accessToken = cookies().get("access_token")?.value;
+    try {
+      const res = await axiosInstance.get(`/user/school/work-hours`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      return(res.data.data)
+    } catch (error: any) {
+      return {
+        error: getErrorMessage(error),
+      };
+    }
+  };
+
+  export const updateWorkTimes = async ({data}:{data:{
+    id: string
+    start_time: string
+    end_time: string
+    is_active: boolean
+  }}): Promise<any> => {
+    const accessToken = cookies().get("access_token")?.value;
+    try {
+      const res = await axiosInstance.put(`/user/school/work-hours`,data, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+    } catch (error: any) {
+      return {
+        error: getErrorMessage(error),
+      };
+    }
+  };

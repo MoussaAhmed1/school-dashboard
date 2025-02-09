@@ -20,7 +20,8 @@
     "privacyPolicy": "سياسة الخصوصية",
     "data_management": "إدارة البيانات",
     "suggestionsComplaintsTitle": "الاقتراحات والشكاوى",
-    "suggestionsComplaintsDescription": "نقدر ملاحظاتكم. يرجى تقديم أي اقتراحات أو شكاوى قد تكون لديكم."
+    "suggestionsComplaintsDescription": "نقدر ملاحظاتكم. يرجى تقديم أي اقتراحات أو شكاوى قد تكون لديكم.",
+     "requestsPickupTime": "وقت استلام الطلبات"
   },
   "toast": {},
   "shared": {
@@ -52,6 +53,7 @@
     "Forgotpassword ?": "نسيت كلمة المرور ؟",
     "email": "البريد الاليكتروني",
     "saveChanges": "حفظ التغييرات",
+    "save": "حفظ",
     "updateFailed": "فشل التحديث",
     "addFailed": "فشل الإضافة",
     "updatedSuccessfully": "تم التحديث بنجاح",

@@ -155,3 +155,17 @@ export interface ICity {
   name: string;
   code: string;
 }
+
+export interface WorkHours {
+  id: string
+  created_at: string
+  updated_at: string
+  deleted_at: any
+  name_ar: string
+  name_en: string
+  order_by: number
+  start_time: string
+  end_time: string
+  is_active: boolean
+  school_id: string
+}

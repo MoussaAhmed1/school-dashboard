@@ -20,7 +20,8 @@
     "privacyPolicy": "Privacy Policy",
     "terms_and_conditions": "Terms and Conditions",
     "suggestionsComplaintsTitle": "Suggestions & Complaints",
-    "suggestionsComplaintsDescription": "We value your feedback. Please submit any suggestions or complaints you may have."
+    "suggestionsComplaintsDescription": "We value your feedback. Please submit any suggestions or complaints you may have.",
+     "requestsPickupTime": "Requests Receiving Time"
   },
   "toast": {},
   "shared": {
@@ -53,6 +54,7 @@
     "update": "Update",
     "edit": "Edit",
     "saveChanges": "Save changes",
+    "save": "Save",
     "updateFailed": "Update failed",
     "addFailed": "Add failed",
     "updatedSuccessfully": "Updated successfully",

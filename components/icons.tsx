@@ -54,6 +54,7 @@ import {
   Watch,
   Trello,
   Info,
+  Clock2
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -112,7 +113,7 @@ export const Icons = {
   trello: Trello,
   arrowUp: ChevronUp,
   info: Info,
-  
+  clock: Clock2,
 
   gitHub: ({ ...props }: LucideProps) => (
     <svg
