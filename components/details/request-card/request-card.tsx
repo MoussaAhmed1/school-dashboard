@@ -57,7 +57,7 @@ function RequestCard({ request, approveRequestArray }: IProps) {
                             <Eye className="mx-1 h-5 w-5 text-gray-600" />
 
                         </Button>
-                        {request?.status === "PENDING" && <Approve successMessage={tUser("requestApprovedSuccessfully")} title={tUser("approveRequest")} defualt method={ConfirmRequest} id={request?.id} extraFunction={approveRequestArray} >
+                        {request?.status === "PENDNING" && <Approve successMessage={tUser("requestApprovedSuccessfully")} title={tUser("approveRequest")} defualt method={ConfirmRequest} id={request?.id} extraFunction={approveRequestArray} >
                             <Button className="sm:mt-0 p-3 bg-blue-500 hover:bg-blue-600 font-bold text-white md:text-lg rounded-lg shadow-md">
                                 <CheckCheck className="mx-1 h-5 w-5 text-gray-100" />
                             </Button>
