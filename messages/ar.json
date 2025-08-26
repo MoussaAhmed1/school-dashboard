@@ -22,7 +22,7 @@
     "data_management": "إدارة البيانات",
     "suggestionsComplaintsTitle": "الاقتراحات والشكاوى",
     "suggestionsComplaintsDescription": "نقدر ملاحظاتكم. يرجى تقديم أي اقتراحات أو شكاوى قد تكون لديكم.",
-     "requestsPickupTime": "وقت استلام الطلبات"
+    "requestsPickupTime": "وقت استلام الطلبات"
   },
   "toast": {},
   "shared": {
@@ -141,7 +141,7 @@
     "parentEmail": "ايميل ولي الامر",
     "parentPhone": "هاتف ولي الامر",
     "driver": "المستخدمين الفرعيين",
-      "grade": "الصف"
+    "grade": "الصف"
   },
   "pages": {
     "home": {
@@ -465,8 +465,7 @@
       "selectGrade": "اختر المرحلة الدراسية",
       "grade": "المرحلة الدراسية",
       "updateGrades": "تحديث المراحل الدراسية",
-    "requestApprovedSuccessfully": "تمت الموافقة على الطلب بنجاح"
-
+      "requestApprovedSuccessfully": "تمت الموافقة على الطلب بنجاح"
     },
     "requestDetails": {
       "title": "تفاصيل الطلب ",
@@ -480,7 +479,9 @@
       "userDetails": "تفاصيل المستخدم",
       "watchUserDetails": "تفاصيل الطالب",
       "driverDetails": "تفاصيل  المستخدم الفرعي ",
-      "joiningDate": "تاريخ الانضمام"
+      "joiningDate": "تاريخ الانضمام",
+      "completed_by": "تم بواسطة",
+      "confirmed_by": "تأكد بواسطة"
     },
     "request": {
       "status": {

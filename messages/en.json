@@ -505,7 +505,10 @@
       "userDetails": "User Details",
       "watchUserDetails": "Watch User Details",
       "driverDetails": "Sub-User Details",
-      "joiningDate": "Joining date"
+      "joiningDate": "Joining date",
+      "completed_by": "Completed By",
+      "confirmed_by": "Confirmed By"
+
     },
     "request": {
       "status": {

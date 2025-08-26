@@ -43,7 +43,7 @@ function RequestCard({ request, approveRequestArray }: IProps) {
                            <GraduationCap  className="mx-2 h-4 w-4 mr-1" />
                            <span>{request?.grade?.name}</span>
                             <CalendarIcon className="mx-2 h-4 w-4 mr-1" />
-                           <span>{convertUtcToLocal(request?.updated_at)}</span>
+                           <span>{convertUtcToLocal(request?.created_at)}</span>
                         </div>
                     </div>
                 </div>

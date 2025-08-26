@@ -32,6 +32,8 @@ export interface ISingleRequest {
   is_parent: boolean;
   drivers: Driver[];
   parent: Parent;
+  confirmed_by:User;
+  completed_by:User;
 }
 
 export interface User {
