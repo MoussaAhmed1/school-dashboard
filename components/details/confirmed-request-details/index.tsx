@@ -1,35 +1,43 @@
-import { Metadata } from "next";
-
 import { ISingleRequest } from "@/types/watches/requests";
-import { fetchSingleRequest } from "@/actions/requests/requests-history-actions";
-import { getDictionary } from "@/app/[lang]/messages";
-import CompletedRequestDetailsView from "@/components/details/completed-request-details";
+import BreadCrumb from "@/components/breadcrumb";
+import {
+  Image as ImageIcon,
+  User,
+  Mail,
+  Clock2,
+  BadgeCheck,
+  Hash,
+  GraduationCap,
+} from "lucide-react";
+import { Heading } from "@/components/ui/heading";
+import { convertUtcToLocal } from "@/utils/helperFunctions";
+import RequestDetails from "@/components/details/requests-history";
 
-export const metadata: Metadata = {
-  title: "Requests Details | Dacatra Dashboard",
-};
+interface Props {
+  request: ISingleRequest;
+  pages: any;
+  navigation: any;
+}
 
-const page = async ({
-  params,
-}: {
-  params: { id: string; lang: "ar" | "en" };
-}) => {
-  const res = await fetchSingleRequest(params.id);
-  const request: ISingleRequest = res?.data?.data;
-  const { pages, navigation } = await getDictionary(params?.lang);
+const ConfirmedRequestDetailsView = ({ request, pages, navigation }: Props) => {
+  const breadcrumbItems = [
+    {
+      title: navigation.historyOfRequests,
+      link: "/dashboard/history-of-requests",
+    },
+    {
+      title: pages.requestDetails.title,
+      link: `/dashboard/history-of-requests/${request?.id}`,
+    },
+  ];
+
   return (
-    <>
-      <CompletedRequestDetailsView
-        request={request}
-        pages={pages}
-        navigation={navigation}
-      />
-      {/* <div className="mx-auto w-full mt-8 bg-background">
+      <div className="mx-auto w-full mt-8 bg-background">
         <BreadCrumb items={breadcrumbItems} customStyle="mx-5" />
         <div className="flex items-baseline justify-between mx-5">
           <Heading
             title={pages.requestDetails.title}
-            description={`${convertUtcToLocal(request?.updated_at)}`}
+            description={`${convertUtcToLocal(request.created_at)}`}
           />
         </div>
         <div className="p-4">
@@ -75,7 +83,7 @@ const page = async ({
                 },
                 {
                   key: pages.users.avatar,
-                  value: request?.user?.avatar || userAvatar,
+                  value: request?.user?.avatar || "",
                   icon: <ImageIcon className="details_icon" />,
                   type: "img",
                 },
@@ -99,7 +107,7 @@ const page = async ({
                 },
                 {
                   key: pages.users.avatar,
-                  value: request?.watch_user?.avatar || userAvatar,
+                  value: request?.watch_user?.avatar || "",
                   icon: <ImageIcon className="details_icon" />,
                   type: "img",
                 },
@@ -112,37 +120,36 @@ const page = async ({
               ]}
               title={pages.requestDetails.watchUserDetails}
             />
-            {request?.completed_by && (
+            {request?.confirmed_by && (
               <RequestDetails
                 data={[
                   {
                     key: pages.users.name,
-                    value: request?.completed_by?.name,
+                    value: request?.confirmed_by?.name,
                     icon: <User className="details_icon" />,
                     type: "text",
                   },
                   {
                     key: pages.users.avatar,
-                    value: request?.completed_by?.avatar || userAvatar,
+                    value: request?.confirmed_by?.avatar || "",
                     icon: <ImageIcon className="details_icon" />,
                     type: "img",
                   },
                   {
                     key: pages.users.email,
-                    value: request?.completed_by?.phone,
+                    value: request?.confirmed_by?.phone,
                     icon: <Mail className="details_icon" />,
                     type: "text",
                     dir: "ltr",
                   },
                 ]}
-                title={pages.requestDetails.completed_by}
+                title={pages.requestDetails.confirmed_by}
               />
             )}
           </div>
         </div>
-      </div> */}
-    </>
+      </div>
   );
 };
 
-export default page;
+export default ConfirmedRequestDetailsView;
