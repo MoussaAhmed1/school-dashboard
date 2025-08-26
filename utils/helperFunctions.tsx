@@ -1,6 +1,17 @@
 import moment from "moment";
 import Cookie from 'js-cookie';
 
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+export function convertUtcToLocal(utcTime: string) {
+  return dayjs.utc(utcTime).tz(dayjs.tz.guess()).format("YYYY-MM-DD , hh:mm A");
+}
+
 //conveting to format 12.356.25
 export function formatNumber(number: number): string {
   const formatter: Intl.NumberFormat = new Intl.NumberFormat();
@@ -48,9 +59,9 @@ export function getTodayDateSimpleFormat(date: Date|string): string {
   return moment(date).format('YYYY-MM-DD HH:mm:ss');
 }
 
-export function convertUtcToLocal(utcTime: string) {
-  return moment.utc(utcTime, "YYYY-MM-DDTHH:mm:ssZ").local().format("YYYY-MM-DD , hh:mm A");
-}
+// export function convertUtcToLocal(utcTime: string) {
+//   return moment.utc(utcTime, "YYYY-MM-DDTHH:mm:ssZ").local().format("YYYY-MM-DD , hh:mm A");
+// }
 
 export function convertUtcToLocalTime(utcTime:string) {
   moment.utc(utcTime?.slice(0, 19))?.local()?.calendar();
