@@ -48,9 +48,10 @@ export function getTodayDateSimpleFormat(date: Date|string): string {
   return moment(date).format('YYYY-MM-DD HH:mm:ss');
 }
 
-export function convertUtcToLocal(utcTime:string) {
-  return moment.utc(utcTime).local().format("YYYY-MM-DD , hh:mm A");
+export function convertUtcToLocal(utcTime: string) {
+  return moment.utc(utcTime, "YYYY-MM-DDTHH:mm:ssZ").local().format("YYYY-MM-DD , hh:mm A");
 }
+
 export function convertUtcToLocalTime(utcTime:string) {
   moment.utc(utcTime?.slice(0, 19))?.local()?.calendar();
 }

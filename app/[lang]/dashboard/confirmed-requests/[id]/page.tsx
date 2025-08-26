@@ -29,7 +29,6 @@ const page = async ({
   const res = await fetchSingleRequest(params.id);
   const request: ISingleRequest = res?.data?.data;
   const { pages, navigation } = await getDictionary(params?.lang);
-  console.log(request);
   const breadcrumbItems = [
     { title: navigation.home, link: "/dashboard/pending-requests" },
     {
@@ -44,7 +43,7 @@ const page = async ({
         <div className="flex items-baseline justify-between mx-5">
           <Heading
             title={pages.requestDetails.title}
-            description={`${convertUtcToLocal(request.updated_at)}`}
+            description={`${convertUtcToLocal(request.created_at)}`}
           />
         </div>
         <div className="p-4">
