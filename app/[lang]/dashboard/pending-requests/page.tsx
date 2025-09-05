@@ -15,7 +15,7 @@ type paramsProps = {
   params: { lang: "ar" | "en" }
 };
 
-
+export const revalidate = 0;
 export default async function page({ searchParams, params }: paramsProps) {
 
   const page = Number(searchParams.page) || 1;

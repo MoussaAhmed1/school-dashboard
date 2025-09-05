@@ -12,7 +12,7 @@ import RequestDetails from "@/components/details/requests-history";
 export const metadata: Metadata = {
   title: "Requests Details | Dacatra Dashboard",
 };
-
+export const revalidate = 0;
 const page = async ({ params }: { params: { id: string, lang: "ar" | "en" } }) => {
   const res = await fetchSingleRequest(params.id);
   const request: ISingleRequest = res?.data?.data;

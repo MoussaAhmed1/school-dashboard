@@ -148,6 +148,32 @@ const CompletedRequestDetailsView = ({ request, pages, navigation }: Props) => {
               title={pages.requestDetails.completed_by}
             />
           )}
+          {request?.confirmed_by && (
+            <RequestDetails
+              data={[
+                {
+                  key: pages.users.name,
+                  value: request?.confirmed_by?.name,
+                  icon: <User className="details_icon" />,
+                  type: "text",
+                },
+                {
+                  key: pages.users.avatar,
+                  value: request?.confirmed_by?.avatar || "",
+                  icon: <ImageIcon className="details_icon" />,
+                  type: "img",
+                },
+                {
+                  key: pages.users.email,
+                  value: request?.confirmed_by?.phone,
+                  icon: <Mail className="details_icon" />,
+                  type: "text",
+                  dir: "ltr",
+                },
+              ]}
+              title={pages.requestDetails.confirmed_by}
+            />
+          )}
         </div>
       </div>
     </div>

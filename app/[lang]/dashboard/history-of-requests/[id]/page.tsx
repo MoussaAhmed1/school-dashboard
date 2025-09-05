@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   title: "Requests Details | Dacatra Dashboard",
 };
 
+export const revalidate = 0;
+
 const page = async ({
   params,
 }: {
