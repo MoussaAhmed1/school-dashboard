@@ -15,7 +15,7 @@ import { endpoints } from "@/utils/axios-client";
 import Cookies from "js-cookie";
 
 type paramsProps = {
-  params: { lang: "ar" | "en" }
+  params: { lang: "ar" | "en" };
 };
 
 // Client-side fetch function
@@ -25,22 +25,24 @@ const fetchRequestsClient = async ({
   status = "PENDING",
   filters,
   accessToken,
-  lang
+  lang,
 }: {
   page?: number;
   limit?: number;
-  status?: string;  
+  status?: string;
   filters?: string;
-  lang?:string
-  accessToken?:string
+  lang?: string;
+  accessToken?: string;
 }): Promise<any> => {
   let filterQueries;
   if (filters) {
     filterQueries = `filters=user.name%3D${filters}%2Cstatus%3D${status}&filters=number%3D${filters}%2Cstatus%3D${status}`;
   }
 
-  const url = `${process.env.NEXT_PUBLIC_HOST_API}${endpoints.watches.history_request}?page=${page}&limit=${limit}&sortBy=created_at=desc&${filterQueries}&filters=status%3D${status}&t=${Date.now()}`;
-  
+  const url = `${process.env.NEXT_PUBLIC_HOST_API}${
+    endpoints.watches.history_request
+  }?page=${page}&limit=${limit}&sortBy=created_at=desc&${filterQueries}&filters=status%3D${status}&t=${Date.now()}`;
+
   try {
     const res = await fetch(url, {
       method: "GET",
@@ -51,7 +53,7 @@ const fetchRequestsClient = async ({
         "Accept-Language": `${lang}`,
       },
     });
-    
+
     if (!res.ok) {
       throw new Error(`Error ${res.status}: ${res.statusText}`);
     }
@@ -69,16 +71,16 @@ const fetchRequestsClient = async ({
 export default function PendingRequestsPage({ params }: paramsProps) {
   const searchParams = useSearchParams();
   const t = useTranslations("navigation");
-  
+
   const [requests, setRequests] = useState<HistoryOfRequests[]>([]);
   const [totalRequests, setTotalRequests] = useState(0);
   const [pageCount, setPageCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const page = Number(searchParams.get('page')) || 1;
-  const limit = Number(searchParams.get('limit')) || ITEMS_PER_PAGE;
-  const search = searchParams.get('search') || "";
+  const page = Number(searchParams.get("page")) || 1;
+  const limit = Number(searchParams.get("limit")) || ITEMS_PER_PAGE;
+  const search = searchParams.get("search") || "";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,9 +94,9 @@ export default function PendingRequestsPage({ params }: paramsProps) {
           limit,
           status: "PENDNING",
           filters: search,
-          lang:lang,
-          accessToken:accessToken,
-          });
+          lang: lang,
+          accessToken: accessToken,
+        });
 
         if (res.error) {
           setError(res.error);
@@ -102,7 +104,7 @@ export default function PendingRequestsPage({ params }: paramsProps) {
           const requestsData: HistoryOfRequests[] = res?.data?.data || [];
           const total = res?.data?.meta?.total || 0;
           const pages = Math.ceil(total / limit);
-          
+
           setRequests(requestsData);
           setTotalRequests(total);
           setPageCount(pages);
@@ -165,12 +167,14 @@ export default function PendingRequestsPage({ params }: paramsProps) {
       <BreadCrumb items={breadcrumbItems} />
 
       <div className="flex items-start justify-between">
-        <Heading
-          title={`${t("home")}`}
-        />
+        <Heading title={`${t("home")}`} />
       </div>
       <Separator />
-      <PendingRequestsList _requests={requests} status="PENDNING" pageCount={pageCount} />
+      <PendingRequestsList
+        _requests={requests}
+        status="PENDNING"
+        pageCount={pageCount}
+      />
     </div>
   );
 }
