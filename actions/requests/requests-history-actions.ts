@@ -9,6 +9,7 @@ import axiosInstance, {
   Params,
 } from "../../utils/axios-client";
 import { ITEMS_PER_PAGE } from "@/constants/data";
+import { revalidatePath } from "next/cache";
 
 export const fetchRequests = async ({
   page = 1,
@@ -23,7 +24,7 @@ export const fetchRequests = async ({
     filterQueries = `filters=user.name%3D${filters}%2Cstatus%3D${status}&filters=number%3D${filters}%2Cstatus%3D${status}`;
   }
 
-  const url = `${process.env.NEXT_PUBLIC_HOST_API}${endpoints.watches.history_request}?page=${page}&limit=${limit}&sortBy=created_at=desc&${filterQueries}&filters=status%3D${status}`;
+  const url = `${process.env.NEXT_PUBLIC_HOST_API}${endpoints.watches.history_request}?page=${page}&limit=${limit}&sortBy=created_at=desc&${filterQueries}&filters=status%3D${status}&t=${Date.now()}`;
   try {
     const res = await fetch(url, {
       method: "GET",
@@ -77,6 +78,9 @@ export const ConfirmRequest = async (request_id: string): Promise<any> => {
         },
       },
     );
+    revalidatePath("/pending-requests");
+    revalidatePath("/confirmed-requests");
+    revalidatePath("/history-of-requests");
   } catch (error) {
     return {
       error: getErrorMessage(error),

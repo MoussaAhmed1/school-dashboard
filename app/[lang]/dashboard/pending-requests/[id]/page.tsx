@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "Requests Details | Dacatra Dashboard",
 };
 export const revalidate = 0;
+export const dynamic = "auto";
 const page = async ({ params }: { params: { id: string, lang: "ar" | "en" } }) => {
   const res = await fetchSingleRequest(params.id);
   const request: ISingleRequest = res?.data?.data;

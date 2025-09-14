@@ -17,6 +17,7 @@ type paramsProps = {
 };
 
 export const revalidate = 0;
+export const dynamic = "auto";
 export default async function page({ searchParams, params }: paramsProps) {
   const page = Number(searchParams.page) || 1;
   const limit = Number(searchParams.limit) || ITEMS_PER_PAGE;

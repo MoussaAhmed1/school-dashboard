@@ -3,12 +3,10 @@
 import { HistoryOfRequests } from "@/types/watches/requests"
 import RequestCard from "./request-card"
 import { Separator } from "@radix-ui/react-separator"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { socket } from "@/app/socket";
 import { useCallback, useEffect, useState } from "react";
 import Cookie from 'js-cookie';
 import { useToast } from "@/components/ui/use-toast";
-import LoadMore from "./LoadMore";
 import { useTranslations } from "next-intl";
 import Noitems from "../no-items/NoItems";
 import { Box } from "lucide-react";

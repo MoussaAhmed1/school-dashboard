@@ -16,8 +16,9 @@ type paramsProps = {
 };
 
 export const revalidate = 0;
-export default async function page({ searchParams, params }: paramsProps) {
+export const dynamic = "auto";
 
+export default async function page({ searchParams, params }: paramsProps) {
   const page = Number(searchParams.page) || 1;
   const limit = Number(searchParams.limit) || ITEMS_PER_PAGE;
   const search =
@@ -42,6 +43,7 @@ export default async function page({ searchParams, params }: paramsProps) {
           <Heading
             title={`${navigation.home} (${totalRequests})`}
           />
+          <h1 className="text-background">{Date.now()}</h1>{/* to make the page dynamic */}
         </div>
         <Separator />
         <PendingRequestsList _requests={requests} status="PENDNING" pageCount={pageCount} />
