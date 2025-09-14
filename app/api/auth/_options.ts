@@ -71,9 +71,9 @@ export const authOptions = {
         const lang = cookies().get("Language")?.value || cookies().get("lang")?.value||"ar";
         cookies().set("Language", lang , {path: "/"});
         cookies().set("access_token", user.data?.access_token, {
-          path: "/",
-          httpOnly: true,
-          sameSite: "strict",
+          // path: "/",
+          // httpOnly: true,
+          // sameSite: "strict",
           secure: true,
         });
         cookies().set("school_id", user.data?.school_id);
