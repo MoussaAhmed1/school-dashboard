@@ -70,17 +70,10 @@ export const authOptions = {
         token.accessToken = user.data?.access_token;
         const lang = cookies().get("Language")?.value || cookies().get("lang")?.value||"ar";
         cookies().set("Language", lang , {path: "/"});
-<<<<<<< Updated upstream
-        cookies().set("access_token", user.data?.access_token, {
+        cookies().set("access_token_school", user.data?.access_token, {
           // path: "/",
           // httpOnly: true,
           // sameSite: "strict",
-=======
-        cookies().set("access_token_school", user.data?.access_token, {
-          path: "/",
-          httpOnly: true,
-          sameSite: "strict",
->>>>>>> Stashed changes
           secure: true,
         });
         cookies().set("school_id", user.data?.school_id);
