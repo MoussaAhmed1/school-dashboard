@@ -86,7 +86,7 @@ export default function PendingRequestsPage({ params }: paramsProps) {
     const fetchData = async () => {
       setLoading(true);
       setError(null);
-      const accessToken = Cookies.get("access_token");
+      const accessToken = Cookies.get("access_token_school");
       const lang = Cookies.get("Language");
       try {
         const res = await fetchRequestsClient({
