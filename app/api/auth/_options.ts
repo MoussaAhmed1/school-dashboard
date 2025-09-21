@@ -1,4 +1,3 @@
-import { ILogedUser } from "@/types/users";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { cookies } from "next/headers";
 
