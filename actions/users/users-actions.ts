@@ -19,7 +19,7 @@ export const fetchSecurity = async ({
   otherfilters,
 }: Params): Promise<any> => {
   const lang = cookies().get("Language")?.value;
-  const accessToken = cookies().get("access_token")?.value;
+  const accessToken = cookies().get("access_token_school")?.value;
   try {
     const res = await axiosInstance.get(endpoints.users.fetch, {
       params: {
@@ -47,7 +47,7 @@ export const fetchStudents = async ({
   filters,
 }: Params): Promise<any> => {
   const lang = cookies().get("Language")?.value;
-  const accessToken = cookies().get("access_token")?.value;
+  const accessToken = cookies().get("access_token_school")?.value;
   try {
     const res = await axiosInstance.get(endpoints.users.fetchStudents, {
       params: {
@@ -73,7 +73,7 @@ export const AddSecurity = async (formData: FormData,role:"security"): Promise<a
     
     try {
       const schoolId = cookies().get("school_id")?.value;
-      const accessToken = cookies().get("access_token")?.value;
+      const accessToken = cookies().get("access_token_school")?.value;
       formData.set("school_id", schoolId ?? "");
       await axiosInstance.post(endpoints.users.register, formData, {
         headers: {
@@ -94,7 +94,7 @@ export const AddSecurity = async (formData: FormData,role:"security"): Promise<a
 export const removeUser = async ({id,revalidateData}:{id:string,revalidateData?:string}): Promise<any> => {
     const lang = cookies().get("Language")?.value;
     try {
-      const accessToken = cookies().get("access_token")?.value;
+      const accessToken = cookies().get("access_token_school")?.value;
       await axiosInstance.delete(endpoints.users.delete, {
         params: {
           id
@@ -121,7 +121,7 @@ export const removeUser = async ({id,revalidateData}:{id:string,revalidateData?:
   export const UpdateUser = async (formData: FormData,role:"security",id?:string): Promise<any> => {
     const lang = cookies().get("Language")?.value;
     try {
-      const accessToken = cookies().get("access_token")?.value;
+      const accessToken = cookies().get("access_token_school")?.value;
       await axiosInstance.put(endpoints.users.update, formData, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -145,7 +145,7 @@ export const removeUser = async ({id,revalidateData}:{id:string,revalidateData?:
 export const UpdateAdminProfile = async (formData: FormData): Promise<any> => {
     const lang = cookies().get("Language")?.value;
     try {
-      const accessToken = cookies().get("access_token")?.value;
+      const accessToken = cookies().get("access_token_school")?.value;
      const res = await axiosInstance.put(endpoints.users.update, formData, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -164,7 +164,7 @@ export const UpdateAdminProfile = async (formData: FormData): Promise<any> => {
 
   export const fetchCities = async (): Promise<any> => {
     const lang = cookies().get("Language")?.value;
-    const accessToken = cookies().get("access_token")?.value;
+    const accessToken = cookies().get("access_token_school")?.value;
     try {
       const res = await axiosInstance.get(endpoints.users.cities, {
         headers: {
@@ -181,7 +181,7 @@ export const UpdateAdminProfile = async (formData: FormData): Promise<any> => {
   };
   export const fetchSchoolGrades = async (): Promise<any> => {
     const lang = cookies().get("Language")?.value;
-    const accessToken = cookies().get("access_token")?.value;
+    const accessToken = cookies().get("access_token_school")?.value;
     const schoolId = cookies().get("school_id")?.value;
     try {
       const res = await axiosInstance.get(`/auth/school/grades/${schoolId}`, {
@@ -199,7 +199,7 @@ export const UpdateAdminProfile = async (formData: FormData): Promise<any> => {
   };
   export const fetchUserGrades = async (user_id:string): Promise<any> => {
     const lang = cookies().get("Language")?.value;
-    const accessToken = cookies().get("access_token")?.value;
+    const accessToken = cookies().get("access_token_school")?.value;
     try {
       const res = await axiosInstance.get(`/user/${user_id}/grades`, {
         headers: {
@@ -217,7 +217,7 @@ export const UpdateAdminProfile = async (formData: FormData): Promise<any> => {
 
   export const postUserGrades = async (user_id:string,grades_ids:string[]): Promise<any> => {
     const lang = cookies().get("Language")?.value;
-    const accessToken = cookies().get("access_token")?.value;
+    const accessToken = cookies().get("access_token_school")?.value;
     try {
       const res = await axiosInstance.post(`/auth/add/security/grade`,{user_id,grades_ids}, {
         headers: {
@@ -234,7 +234,7 @@ export const UpdateAdminProfile = async (formData: FormData): Promise<any> => {
   };
 
   export const fetchWorkHours = async (): Promise<any> => {
-    const accessToken = cookies().get("access_token")?.value;
+    const accessToken = cookies().get("access_token_school")?.value;
     try {
       const res = await axiosInstance.get(`/user/school/work-hours`, {
         headers: {
@@ -255,7 +255,7 @@ export const UpdateAdminProfile = async (formData: FormData): Promise<any> => {
     end_time: string
     is_active: boolean
   }}): Promise<any> => {
-    const accessToken = cookies().get("access_token")?.value;
+    const accessToken = cookies().get("access_token_school")?.value;
     try {
       const res = await axiosInstance.put(`/user/school/work-hours`,data, {
         headers: {

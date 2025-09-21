@@ -18,7 +18,7 @@ export const fetchRequests = async ({
   filters,
 }: Params): Promise<any> => {
   const lang = cookies().get("Language")?.value;
-  const accessToken = cookies().get("access_token")?.value;
+  const accessToken = cookies().get("access_token_school")?.value;
   let filterQueries;
   if (filters) {
     filterQueries = `filters=user.name%3D${filters}%2Cstatus%3D${status}&filters=number%3D${filters}%2Cstatus%3D${status}`;
@@ -49,7 +49,7 @@ export const fetchRequests = async ({
 };
 export const fetchSingleRequest = async (id: string): Promise<any> => {
   const lang = cookies().get("Language")?.value;
-  const accessToken = cookies().get("access_token")?.value;
+  const accessToken = cookies().get("access_token_school")?.value;
   try {
     const res = await axiosInstance(`${endpoints.watches.get_single}/${id}`, {
       headers: {
@@ -67,7 +67,7 @@ export const ConfirmRequest = async (request_id: string): Promise<any> => {
   const lang = cookies().get("Language")?.value;
 
   try {
-    const accessToken = cookies().get("access_token")?.value;
+    const accessToken = cookies().get("access_token_school")?.value;
     await axiosInstance.post(
       endpoints.watches.confirm_request,
       { request_id },

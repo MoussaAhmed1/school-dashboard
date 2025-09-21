@@ -15,7 +15,7 @@ export interface ILogedUser {
   city_id: string;
   language: string;
   fcm_token: any;
-  access_token: string;
+  access_token_school: string;
 }
 
 export interface IUser {
