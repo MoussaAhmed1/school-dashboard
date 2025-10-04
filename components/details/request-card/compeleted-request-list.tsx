@@ -6,17 +6,29 @@ import { Separator } from "@radix-ui/react-separator"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Noitems from "../no-items/NoItems";
 import { Box } from "lucide-react";
+import { useEffect, useState } from "react";
 interface IProps {
     requests: HistoryOfRequests[];
-
+    gradeId?: string;
 }
 
-function CompletedRequestsList({ requests }: IProps) {
+function CompletedRequestsList({ requests, gradeId }: IProps) {
+    const [filteredRequests, setFilteredRequests] = useState<HistoryOfRequests[]>(requests);
+
+    // Filter requests by gradeId
+    useEffect(() => {
+        if (gradeId) {
+            const filtered = requests.filter(request => request.grade?.id === gradeId);
+            setFilteredRequests(filtered);
+        } else {
+            setFilteredRequests(requests);
+        }
+    }, [requests, gradeId]);
     return (
         <ScrollArea className="rounded-md border h-[75vh] p-2" >
             {
-            requests.length > 0 ? (
-                requests.map((request) => (
+            filteredRequests.length > 0 ? (
+                filteredRequests.map((request) => (
                     <div key={request.id} className="w-full">
                         <RequestCard
 

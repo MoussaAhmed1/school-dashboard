@@ -15,15 +15,17 @@ interface IProps {
     _requests: HistoryOfRequests[];
     status: "COMPLETED" | "PENDNING"| "CONFIRMED";
     pageCount:number;
+    gradeId?: string;
 }
 
-function PendingRequestsList({ _requests=[], status,pageCount }: IProps) {
+function PendingRequestsList({ _requests=[], status,pageCount, gradeId }: IProps) {
     const school_id = Cookie.get("school_id");
     const { toast } = useToast();
     const t = useTranslations("tableColumns");
     const [isConnected, setIsConnected] = useState(false);
     const [transport, setTransport] = useState("N/A");
     const [requests, setRequests] = useState<HistoryOfRequests[]>(_requests);
+    const [filteredRequests, setFilteredRequests] = useState<HistoryOfRequests[]>(_requests);
     const [page, setPage] = useState(2);
     const approveRequestArray = useCallback(
         (requestId: string) => {
@@ -32,6 +34,16 @@ function PendingRequestsList({ _requests=[], status,pageCount }: IProps) {
         },
         [requests],
     )
+
+    // Filter requests by gradeId
+    useEffect(() => {
+        if (gradeId) {
+            const filtered = requests.filter(request => request.grade?.id === gradeId);
+            setFilteredRequests(filtered);
+        } else {
+            setFilteredRequests(requests);
+        }
+    }, [requests, gradeId]);
 
     useEffect(() => {
         if (socket.connected) {
@@ -77,8 +89,8 @@ function PendingRequestsList({ _requests=[], status,pageCount }: IProps) {
     }, [requests, school_id, status, toast]);
     return (
         <div className="rounded-md border h-[75vh] p-2" >
-            {requests?.length > 0 ?
-                requests.map((request, index) => (
+            {filteredRequests?.length > 0 ?
+                filteredRequests.map((request, index) => (
                     <div key={request.id} className="w-full">
                         <RequestCard
                             request={request}

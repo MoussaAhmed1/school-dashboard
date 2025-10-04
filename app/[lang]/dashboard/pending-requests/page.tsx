@@ -7,15 +7,22 @@ import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { ITEMS_PER_PAGE } from "@/constants/data";
 import { HistoryOfRequests } from "@/types/watches/requests";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Skeleton } from "@/components/ui/skeleton";
 import { endpoints } from "@/utils/axios-client";
 import Cookies from "js-cookie";
+import { fetchGrades } from "@/actions/requests/requests-history-actions";
+import GradeFilter from "@/components/filters/grade-filter";
 
 type paramsProps = {
   params: { lang: "ar" | "en" };
+};
+
+type Grade = {
+  id: string;
+  name: string;
 };
 
 // Client-side fetch function
@@ -24,6 +31,7 @@ const fetchRequestsClient = async ({
   limit = ITEMS_PER_PAGE,
   status = "PENDING",
   filters,
+  gradeId,
   accessToken,
   lang,
 }: {
@@ -31,17 +39,23 @@ const fetchRequestsClient = async ({
   limit?: number;
   status?: string;
   filters?: string;
+  gradeId?: string;
   lang?: string;
   accessToken?: string;
 }): Promise<any> => {
-  let filterQueries;
+  let filterQueries = `filters=status%3D${status}`;
+  
   if (filters) {
-    filterQueries = `filters=user.name%3D${filters}%2Cstatus%3D${status}&filters=number%3D${filters}%2Cstatus%3D${status}`;
+    filterQueries += `&filters=user.name%3D${filters}%2Cstatus%3D${status}&filters=number%3D${filters}%2Cstatus%3D${status}`;
+  }
+  
+  if (gradeId) {
+    filterQueries += `&filters=grade_id%3D${gradeId}`;
   }
 
   const url = `${process.env.NEXT_PUBLIC_HOST_API}${
     endpoints.watches.history_request
-  }?page=${page}&limit=${limit}&sortBy=created_at=desc&${filterQueries}&filters=status%3D${status}&t=${Date.now()}`;
+  }?page=${page}&limit=${limit}&sortBy=created_at=desc&${filterQueries}&t=${Date.now()}`;
 
   try {
     const res = await fetch(url, {
@@ -62,6 +76,7 @@ const fetchRequestsClient = async ({
     return { data: requestsRes };
   } catch (error: any) {
     console.error("Error fetching requests:", error);
+    console.log(error)
     return {
       error: error.message || "Failed to fetch requests",
     };
@@ -70,6 +85,7 @@ const fetchRequestsClient = async ({
 
 export default function PendingRequestsPage({ params }: paramsProps) {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const t = useTranslations("navigation");
 
   const [requests, setRequests] = useState<HistoryOfRequests[]>([]);
@@ -77,10 +93,42 @@ export default function PendingRequestsPage({ params }: paramsProps) {
   const [pageCount, setPageCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [grades, setGrades] = useState<Grade[]>([]);
+  const [gradesLoading, setGradesLoading] = useState(true);
 
   const page = Number(searchParams.get("page")) || 1;
   const limit = Number(searchParams.get("limit")) || ITEMS_PER_PAGE;
   const search = searchParams.get("search") || "";
+  const gradeId = searchParams.get("gradeId") || "";
+
+  // Function to handle grade selection
+  const handleGradeChange = (selectedGradeId: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (selectedGradeId) {
+      params.set("gradeId", selectedGradeId);
+    } else {
+      params.delete("gradeId");
+    }
+    params.set("page", "1"); // Reset to first page when filtering
+    router.push(`?${params.toString()}`);
+  };
+
+  // Fetch grades on component mount
+  useEffect(() => {
+    const fetchGradesData = async () => {
+      setGradesLoading(true);
+      try {
+        const gradesData: Grade[] = await fetchGrades();
+        setGrades(gradesData);
+      } catch (err) {
+        console.error("Error fetching grades:", err);
+      } finally {
+        setGradesLoading(false);
+      }
+    };
+
+    fetchGradesData();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -94,6 +142,7 @@ export default function PendingRequestsPage({ params }: paramsProps) {
           limit,
           status: "PENDNING",
           filters: search,
+          gradeId: gradeId,
           lang: lang,
           accessToken: accessToken,
         });
@@ -118,14 +167,18 @@ export default function PendingRequestsPage({ params }: paramsProps) {
     };
 
     fetchData();
-  }, [page, limit, search]);
+  }, [page, limit, search, gradeId]);
 
   const breadcrumbItems = [{ title: t("home"), link: `/dashboard` }];
 
   if (loading) {
     return (
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-        <BreadCrumb items={breadcrumbItems} />
+      <BreadCrumb items={breadcrumbItems} />
+
+      <div className="flex items-start justify-between">
+        <Heading title={`${t("home")}`} />
+      </div>
         <div className="flex items-start justify-between">
           <Skeleton className="h-8 w-48" />
         </div>
@@ -169,11 +222,21 @@ export default function PendingRequestsPage({ params }: paramsProps) {
       <div className="flex items-start justify-between">
         <Heading title={`${t("home")}`} />
       </div>
+      
+      {/* Grade Filter */}
+      <GradeFilter
+        grades={grades}
+        gradesLoading={gradesLoading}
+        selectedGradeId={gradeId}
+        onGradeChange={handleGradeChange}
+      />
+      
       <Separator />
       <PendingRequestsList
         _requests={requests}
         status="PENDNING"
         pageCount={pageCount}
+        gradeId={gradeId}
       />
     </div>
   );

@@ -22,7 +22,11 @@
     "terms_and_conditions": "Terms and Conditions",
     "suggestionsComplaintsTitle": "Suggestions & Complaints",
     "suggestionsComplaintsDescription": "We value your feedback. Please submit any suggestions or complaints you may have.",
-     "requestsPickupTime": "Requests Receiving Time"
+    "requestsPickupTime": "Requests Receiving Time",
+    "filterByGrade": "Filter by Grade",
+    "selectGrade": "Select a grade",
+    "allGrades": "All Grades",
+    "loadingGrades": "Loading grades..."
   },
   "toast": {},
   "shared": {

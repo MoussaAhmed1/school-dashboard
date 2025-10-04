@@ -115,4 +115,7 @@ export const endpoints = {
     base_storage: "/storage",
   },
   reviews:"/reservation/reviews",
+  grades: {
+    fetch: "auth/school/grades",
+  },
 };
