@@ -8,6 +8,7 @@ export default function Sidebar() {
       className={cn(
         `hidden min-h-full overflow-auto overflow-x-hidden  pt-16 xl:block bg-[#FAFAFA] dark:bg-[#0a1c38]`,
       )}
+      dir="rtl"
     >
       <div className="space-y-2 py-1 side-nav">
         <div className="px-.5 py-.5 side-nav">

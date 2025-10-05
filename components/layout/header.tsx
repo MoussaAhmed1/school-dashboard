@@ -15,7 +15,7 @@ export default function Header({ lang }: { lang: Language }) {
     <div className="fixed top-0 left-0 right-0 supports-backdrop-blur:bg-background/60 border-b bg-[#FAFAFA] dark:border-[#2a3b50]  backdrop-blur z-50 dark:bg-[#0a1c38]">
       <nav className="h-14 flex items-center justify-between px-4">
         <div className="flex gap-2 items-center">
-        <div className={cn("block xl:!hidden")}>
+        <div className={cn("block")}>
           <MobileSidebar />
         </div>
         <div>

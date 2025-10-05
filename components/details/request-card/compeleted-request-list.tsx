@@ -12,23 +12,12 @@ interface IProps {
     gradeId?: string;
 }
 
-function CompletedRequestsList({ requests, gradeId }: IProps) {
-    const [filteredRequests, setFilteredRequests] = useState<HistoryOfRequests[]>(requests);
-
-    // Filter requests by gradeId
-    useEffect(() => {
-        if (gradeId) {
-            const filtered = requests.filter(request => request.grade?.id === gradeId);
-            setFilteredRequests(filtered);
-        } else {
-            setFilteredRequests(requests);
-        }
-    }, [requests, gradeId]);
+function CompletedRequestsList({ requests }: IProps) {
     return (
         <ScrollArea className="rounded-md border h-[75vh] p-2" >
             {
-            filteredRequests.length > 0 ? (
-                filteredRequests.map((request) => (
+            requests.length > 0 ? (
+                requests.map((request) => (
                     <div key={request.id} className="w-full">
                         <RequestCard
 

@@ -50,7 +50,7 @@ const fetchRequestsClient = async ({
   }
   
   if (gradeId) {
-    filterQueries += `&filters=grade_id%3D${gradeId}`;
+    filterQueries += `%2Cgrade_id%3D${gradeId}`;
   }
 
   const url = `${process.env.NEXT_PUBLIC_HOST_API}${
