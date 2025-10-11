@@ -76,7 +76,6 @@ const fetchRequestsClient = async ({
     return { data: requestsRes };
   } catch (error: any) {
     console.error("Error fetching requests:", error);
-    console.log(error)
     return {
       error: error.message || "Failed to fetch requests",
     };

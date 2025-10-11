@@ -1,8 +1,12 @@
 import { DashboardNav } from "@/components/dashboard-nav";
-import { navItems } from "@/constants/data";
 import { cn } from "@/lib/utils";
+import { NavItem } from "@/types";
 
-export default function Sidebar() {
+interface SidebarProps {
+  navItems?: NavItem[];
+}
+
+export default function Sidebar({ navItems = [] }: SidebarProps) {
   return (
     <nav
       className={cn(

@@ -1,17 +1,15 @@
 "use client";
 import { DashboardNav } from "@/components/dashboard-nav";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { navItems } from "@/constants/data";
+import { NavItem } from "@/types";
 import { MenuIcon } from "lucide-react";
 import { useState } from "react";
 
-// import { Playlist } from "../data/playlists";
-
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  // playlists: Playlist[];
+interface MobileSidebarProps extends React.HTMLAttributes<HTMLDivElement> {
+  navItems?: NavItem[];
 }
 
-export function MobileSidebar({ className }: SidebarProps) {
+export function MobileSidebar({ className, navItems = [] }: MobileSidebarProps) {
   const [open, setOpen] = useState(false);
   return (
     <>

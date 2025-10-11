@@ -32,7 +32,7 @@ export const authOptions = {
             headers: { "Content-Type": "application/json" },
           });
           const user:any = await res.json();
-          if(user?.data?.role as any !== "SCHOOL"){
+          if(user?.data?.role !== "SCHOOL" && user?.data?.role !== 'SECURITY'){
             return null;
           }
           else if (res.ok) {
@@ -65,10 +65,12 @@ export const authOptions = {
         token.avatar = user.data?.avatar;
         token.image = user.data?.avatar;
         token.id = user.data?.id;
+        token.role = user.data?.role;
         // token.city_id = user.data?.school?.city_id;
         token.accessToken = user.data?.access_token;
         const lang = cookies().get("Language")?.value || cookies().get("lang")?.value||"ar";
         cookies().set("Language", lang , {path: "/"});
+        cookies().set("role", user.data?.role , {secure: true});
         cookies().set("access_token_school", user.data?.access_token, {
           // path: "/",
           // httpOnly: true,

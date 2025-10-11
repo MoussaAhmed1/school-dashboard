@@ -9,7 +9,7 @@ export default async function Home({ params }: { params: { lang: "ar" | "en" } }
   const apiToken = cookies()?.get("access_token_school")?.value;
 
   if (session && apiToken) {
-    redirect("/dashboard");
+    redirect(`/${params.lang}/dashboard`);
   }
   return <LoginForm  lang={params.lang} />
 }

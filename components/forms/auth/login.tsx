@@ -40,7 +40,7 @@ export default function LoginForm({ lang }: { lang: Language }) {
         return;
       }
 
-      router.replace("/");
+      router.replace(`/${lang}/dashboard`);
     } catch (error) {
       setError("something went wrong");
     }
