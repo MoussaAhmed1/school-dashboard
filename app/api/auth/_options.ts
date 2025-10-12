@@ -77,7 +77,8 @@ export const authOptions = {
           // sameSite: "strict",
           secure: true,
         });
-        cookies().set("school_id", user.data?.school_id);
+        //could be school or security id 
+        cookies().set("school_id", user?.data?.role === "SCHOOL" ? user.data?.school_id: user.data?.id);
         // cookies().set("city_id", user.data?.school.city_id);
       }
       return token;

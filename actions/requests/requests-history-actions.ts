@@ -18,9 +18,11 @@ type Grade = {
 
 export const fetchGrades = async (): Promise<Grade[]> => {
   const accessToken = cookies().get("access_token_school")?.value;
+  const role = cookies().get("role")?.value;
   const lang = cookies().get("Language")?.value;
-  const schoolId = cookies().get("school_id")?.value;
-  const url = `${process.env.NEXT_PUBLIC_HOST_API}${endpoints.grades.fetch}/${schoolId}`;
+  const schoolId = cookies().get("school_id")?.value ;
+  const url = role === "SCHOOL" ?`${process.env.NEXT_PUBLIC_HOST_API}${endpoints.grades.fetch}/${schoolId}`:
+  `${process.env.NEXT_PUBLIC_HOST_API}user/${schoolId}/grades`;
   try {
     const res = await fetch(url, {
       method: "GET",
