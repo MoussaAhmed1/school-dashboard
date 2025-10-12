@@ -1,7 +1,7 @@
 
 "use client";
 
-import { fetchRequests, fetchGrades } from "@/actions/requests/requests-history-actions";
+import { fetchRequests } from "@/actions/requests/requests-history-actions";
 import BreadCrumb from "@/components/breadcrumb";
 import CompletedRequestsList from "@/components/details/request-card/compeleted-request-list";
 import Pagination from "@/components/shared/table/Pagination";
@@ -10,7 +10,6 @@ import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { ITEMS_PER_PAGE } from "@/constants/data";
 import { HistoryOfRequests } from "@/types/watches/requests";
-import { convertUtcToLocal } from "@/utils/helperFunctions";
 import GradeFilter from "@/components/filters/grade-filter";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -36,8 +35,7 @@ export default function HistoryOfRequestsPage({ params }: paramsProps) {
   const [pageCount, setPageCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [grades, setGrades] = useState<Grade[]>([]);
-  const [gradesLoading, setGradesLoading] = useState(true);
+  // grades are now fetched inside GradeFilter
 
   const page = Number(searchParams.get("page")) || 1;
   const limit = Number(searchParams.get("limit")) || ITEMS_PER_PAGE;
@@ -56,22 +54,7 @@ export default function HistoryOfRequestsPage({ params }: paramsProps) {
     router.push(`?${params.toString()}`);
   };
 
-  // Fetch grades on component mount
-  useEffect(() => {
-    const fetchGradesData = async () => {
-      setGradesLoading(true);
-      try {
-        const gradesData: Grade[] = await fetchGrades();
-        setGrades(gradesData);
-      } catch (err) {
-        console.error("Error fetching grades:", err);
-      } finally {
-        setGradesLoading(false);
-      }
-    };
-
-    fetchGradesData();
-  }, []);
+  // GradeFilter now fetches grades internally
 
   useEffect(() => {
     const fetchData = async () => {
@@ -159,12 +142,7 @@ export default function HistoryOfRequestsPage({ params }: paramsProps) {
       </div>
       
       {/* Grade Filter */}
-      <GradeFilter
-        grades={grades}
-        gradesLoading={gradesLoading}
-        selectedGradeId={gradeId}
-        onGradeChange={handleGradeChange}
-      />
+      <GradeFilter selectedGradeId={gradeId} onGradeChange={handleGradeChange} />
       
       <Separator />
       <SearchInput searchKey={"search"} />

@@ -1,6 +1,5 @@
 "use client";
 
-import { getDictionary } from "@/app/[lang]/messages";
 import BreadCrumb from "@/components/breadcrumb";
 import PendingRequestsList from "@/components/details/request-card/requests-list";
 import { Heading } from "@/components/ui/heading";
@@ -13,17 +12,12 @@ import { useTranslations } from "next-intl";
 import { Skeleton } from "@/components/ui/skeleton";
 import { endpoints } from "@/utils/axios-client";
 import Cookies from "js-cookie";
-import { fetchGrades } from "@/actions/requests/requests-history-actions";
 import GradeFilter from "@/components/filters/grade-filter";
 
 type paramsProps = {
   params: { lang: "ar" | "en" };
 };
 
-type Grade = {
-  id: string;
-  name: string;
-};
 
 // Client-side fetch function
 const fetchRequestsClient = async ({
@@ -44,11 +38,11 @@ const fetchRequestsClient = async ({
   accessToken?: string;
 }): Promise<any> => {
   let filterQueries = `filters=status%3D${status}`;
-  
+
   if (filters) {
     filterQueries += `&filters=user.name%3D${filters}%2Cstatus%3D${status}&filters=number%3D${filters}%2Cstatus%3D${status}`;
   }
-  
+
   if (gradeId) {
     filterQueries += `%2Cgrade_id%3D${gradeId}`;
   }
@@ -92,8 +86,7 @@ export default function PendingRequestsPage({ params }: paramsProps) {
   const [pageCount, setPageCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [grades, setGrades] = useState<Grade[]>([]);
-  const [gradesLoading, setGradesLoading] = useState(true);
+  // grades are now fetched inside GradeFilter component
 
   const page = Number(searchParams.get("page")) || 1;
   const limit = Number(searchParams.get("limit")) || ITEMS_PER_PAGE;
@@ -111,21 +104,6 @@ export default function PendingRequestsPage({ params }: paramsProps) {
     params.set("page", "1"); // Reset to first page when filtering
     router.push(`?${params.toString()}`);
   };
-
-  // Fetch grades on component mount
-  useEffect(() => {
-    (async () => {
-      setGradesLoading(true);
-      try {
-        const gradesData: Grade[] = await fetchGrades();
-        setGrades(gradesData);
-      } catch (err) {
-        console.error("Error fetching grades:", err);
-      } finally {
-        setGradesLoading(false);
-      }
-    })();
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -165,17 +143,18 @@ export default function PendingRequestsPage({ params }: paramsProps) {
 
     fetchData();
   }, [page, limit, search, gradeId]);
+  // GradeFilter now fetches grades internally
 
   const breadcrumbItems = [{ title: t("home"), link: `/dashboard` }];
 
   if (loading) {
     return (
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-      <BreadCrumb items={breadcrumbItems} />
+        <BreadCrumb items={breadcrumbItems} />
 
-      <div className="flex items-start justify-between">
-        <Heading title={`${t("home")}`} />
-      </div>
+        <div className="flex items-start justify-between">
+          <Heading title={`${t("home")}`} />
+        </div>
         <div className="flex items-start justify-between">
           <Skeleton className="h-8 w-48" />
         </div>
@@ -219,15 +198,10 @@ export default function PendingRequestsPage({ params }: paramsProps) {
       <div className="flex items-start justify-between">
         <Heading title={`${t("home")}`} />
       </div>
-      
+
       {/* Grade Filter */}
-      <GradeFilter
-        grades={grades}
-        gradesLoading={gradesLoading}
-        selectedGradeId={gradeId}
-        onGradeChange={handleGradeChange}
-      />
-      
+      {<GradeFilter selectedGradeId={gradeId} onGradeChange={handleGradeChange} />}
+
       <Separator />
       <PendingRequestsList
         _requests={requests}

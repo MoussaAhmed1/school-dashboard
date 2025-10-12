@@ -17,29 +17,51 @@ type Grade = {
 };
 
 export const fetchGrades = async (): Promise<Grade[]> => {
-  const accessToken = cookies().get("access_token_school")?.value;
-  const role = cookies().get("role")?.value;
-  const lang = cookies().get("Language")?.value;
-  const schoolId = cookies().get("school_id")?.value ;
-  const url = role === "SCHOOL" ?`${process.env.NEXT_PUBLIC_HOST_API}${endpoints.grades.fetch}/${schoolId}`:
-  `${process.env.NEXT_PUBLIC_HOST_API}user/${schoolId}/grades`;
   try {
+    const cookieStore = cookies();
+    const accessToken = cookieStore.get("access_token_school")?.value;
+    const role = cookieStore.get("role")?.value;
+    const lang = cookieStore.get("Language")?.value || "en";
+    const schoolId = cookieStore.get("school_id")?.value;
+
+    if (!accessToken || !schoolId) {
+      console.warn("Missing required cookies: accessToken or schoolId");
+      return [];
+    }
+
+    const baseUrl = process.env.NEXT_PUBLIC_HOST_API;
+    if (!baseUrl) {
+      console.error("Missing NEXT_PUBLIC_HOST_API environment variable");
+      return [];
+    }
+
+    const url =
+      role === "SCHOOL"
+        ? `${baseUrl}${endpoints.grades.fetch}/${schoolId}`
+        : `${baseUrl}user/${schoolId}/grades`;
+
     const res = await fetch(url, {
       method: "GET",
-      cache: "no-store",
+      cache: "no-store", // disable caching for fresh data
       headers: {
         Accept: "application/json",
         Authorization: `Bearer ${accessToken}`,
-        "Accept-Language": `${lang}`,
+        "Accept-Language": lang,
       },
     });
+
     if (!res.ok) {
-      throw new Error(`Error ${res.status}: ${res.statusText}`);
+      console.error(`Error ${res.status}: ${res.statusText}`);
+      return [];
     }
-    const data = await res.json()
-    const gradesRes = data || [];
-    return gradesRes?.data || [];
-  } catch (error: any) {
+
+    const data = await res.json();
+
+    // Gracefully handle any unexpected data structure
+    const grades = Array.isArray(data?.data) ? data.data : [];
+
+    return grades;
+  } catch (error) {
     console.error("Error fetching grades:", error);
     return [];
   }

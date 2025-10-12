@@ -1,6 +1,6 @@
 "use client";
 
-import { fetchRequests, fetchGrades } from "@/actions/requests/requests-history-actions";
+import { fetchRequests } from "@/actions/requests/requests-history-actions";
 import BreadCrumb from "@/components/breadcrumb";
 import CompletedRequestsList from "@/components/details/request-card/compeleted-request-list";
 import { Heading } from "@/components/ui/heading";
@@ -34,8 +34,7 @@ export default function ConfirmedRequestsPage({ params }: paramsProps) {
   const [pageCount, setPageCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [grades, setGrades] = useState<Grade[]>([]);
-  const [gradesLoading, setGradesLoading] = useState(true);
+  // grades are now fetched inside GradeFilter
 
   const page = Number(searchParams.get("page")) || 1;
   const limit = Number(searchParams.get("limit")) || ITEMS_PER_PAGE;
@@ -54,22 +53,7 @@ export default function ConfirmedRequestsPage({ params }: paramsProps) {
     router.push(`?${params.toString()}`);
   };
 
-  // Fetch grades on component mount
-  useEffect(() => {
-    const fetchGradesData = async () => {
-      setGradesLoading(true);
-      try {
-        const gradesData: Grade[] = await fetchGrades();
-        setGrades(gradesData);
-      } catch (err) {
-        console.error("Error fetching grades:", err);
-      } finally {
-        setGradesLoading(false);
-      }
-    };
-
-    fetchGradesData();
-  }, []);
+  // GradeFilter now fetches grades internally
 
   useEffect(() => {
     const fetchData = async () => {
@@ -157,12 +141,7 @@ export default function ConfirmedRequestsPage({ params }: paramsProps) {
       </div>
       
       {/* Grade Filter */}
-      <GradeFilter
-        grades={grades}
-        gradesLoading={gradesLoading}
-        selectedGradeId={gradeId}
-        onGradeChange={handleGradeChange}
-      />
+      <GradeFilter selectedGradeId={gradeId} onGradeChange={handleGradeChange} />
       
       <Separator />
       <SearchInput searchKey={"search"} />
