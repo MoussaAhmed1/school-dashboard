@@ -114,7 +114,7 @@ export default function PendingRequestsPage({ params }: paramsProps) {
 
   // Fetch grades on component mount
   useEffect(() => {
-    const fetchGradesData = async () => {
+    (async () => {
       setGradesLoading(true);
       try {
         const gradesData: Grade[] = await fetchGrades();
@@ -124,9 +124,7 @@ export default function PendingRequestsPage({ params }: paramsProps) {
       } finally {
         setGradesLoading(false);
       }
-    };
-
-    fetchGradesData();
+    })();
   }, []);
 
   useEffect(() => {
