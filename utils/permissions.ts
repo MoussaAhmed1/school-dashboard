@@ -157,27 +157,22 @@ export const NAV_ITEMS_WITH_ROLES = {
 export function can(role: string, route: string): boolean {
   const permissions = ROLE_PERMISSIONS[role as keyof typeof ROLE_PERMISSIONS];
   if (!permissions) return false;
+  const baseRoutes = [
+    "/dashboard/pending-requests",
+    "/dashboard/confirmed-requests",
+    "/dashboard/history-of-requests"
+  ];
+  
+  if (baseRoutes.some(baseRoute => route.startsWith(baseRoute))) {
+    return true;
+  }
+
   return permissions.some(permittedRoute => {
     // Exact match
     if (route === permittedRoute) return true;
-
-    // Normalize both paths: remove query/hash and trailing slash (except root)
-    const normalize = (p: string) => {
-      if (!p) return p;
-      // strip query and hash
-      const base = p.split(/[?#]/)[0];
-      // remove trailing slash except for root
-      return base.endsWith("/") && base !== "/" ? base.slice(0, -1) : base;
-    };
-
-    const r = normalize(route);
-    const pr = normalize(permittedRoute);
-
-    // If the route is a nested path under the permitted base route, allow it.
-    // e.g. permittedRoute = '/dashboard/pending-requests' should allow '/dashboard/pending-requests/123'
-    if (r.startsWith(pr + "/")) return true;
-
-    return false;
+    
+    // Check for nested routes (e.g., /dashboard/settings/about-us matches /dashboard/settings)
+    // return permittedRoute.startsWith(route) || route.startsWith(permittedRoute);
   });
 }
 
