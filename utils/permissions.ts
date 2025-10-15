@@ -156,14 +156,14 @@ export const NAV_ITEMS_WITH_ROLES = {
  */
 export function can(role: string, route: string): boolean {
   const permissions = ROLE_PERMISSIONS[role as keyof typeof ROLE_PERMISSIONS];
+  console.log(role, route);
   if (!permissions) return false;
   const baseRoutes = [
-    "/dashboard/pending-requests",
-    "/dashboard/confirmed-requests",
-    "/dashboard/history-of-requests"
+    "/pending-requests",
+    "/confirmed-requests",
+    "/history-of-requests"
   ];
-  
-  if (baseRoutes.some(baseRoute => route.startsWith(baseRoute))) {
+  if (baseRoutes.some(baseRoute => route.includes(baseRoute))) {
     return true;
   }
 
