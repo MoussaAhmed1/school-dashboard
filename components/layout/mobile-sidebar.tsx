@@ -17,9 +17,9 @@ export function MobileSidebar({ className, navItems = [] }: MobileSidebarProps) 
         <SheetTrigger asChild>
           <MenuIcon />
         </SheetTrigger>
-        <SheetContent side="right" className="!px-0 h-screen overflow-auto">
+        <SheetContent side="right" className="!px-0 h-screen overflow-auto bg-[#FAFAFA] dark:bg-[#0a1c38]">
           <div className="space-y-4 py-4">
-            <div className="px-3 py-2">
+            <div className="mx-3 my-2 p-3 rounded-lg bg-white/60 dark:bg-[#041423]/60 shadow-sm backdrop-blur">
               <div className="space-y-1">
                 <DashboardNav _items={navItems} setOpen={setOpen} />
               </div>

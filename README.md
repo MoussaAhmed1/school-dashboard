@@ -44,6 +44,38 @@ This is a starter template using the following stack:
 | [Not Found](https://next-shadcn-dashboard-starter.vercel.app/dashboard/notfound)  | Not Found Page Added in the root level                                                                |
 | -                                                                                 | -                                                                                                     |
 
+## UI Customization
+
+The dashboard UI uses a consistent design system with customizable elements. Here's how to adjust the visual styling:
+
+### Theme Colors
+
+The main accent colors can be adjusted in these components:
+- Sidebar: Edit `bg-blue-50` and `text-blue-700` classes in `components/dashboard-nav.tsx`
+- Active indicators: Modify `border-blue-600` in nav components
+- Header: Adjust `bg-[#FAFAFA]` and `dark:bg-[#0a1c38]` in `components/layout/header.tsx`
+
+### Component Styling
+
+Common UI patterns that can be customized:
+- Card containers: Uses `rounded-lg bg-white/60 dark:bg-[#041423]/60 shadow-sm backdrop-blur`
+- Navigation items: Uses `transition-colors duration-150` for smooth hovers
+- Active states: Combines subtle background (`bg-blue-50`), right border accent, and shadow
+- Dark mode: Custom background colors using `dark:bg-[#hexcode]` format
+
+### Spacing and Layout
+
+- Sidebar padding: Outer `p-3`, inner items `px-3 py-2`
+- Header height: Uses `h-16` class
+- Nav item height: Standard `h-12` for consistent sizing
+- Gaps between items: Uses `gap-2` or `gap-3` for spacing
+
+### Responsive Design
+
+- Mobile sidebar: Matches desktop styling but slides in from right
+- Header: Adjusts padding and grouping on smaller screens
+- Sidebar: Hidden on mobile, replaced by sheet/drawer navigation
+
 ## Getting Started
 
 Follow these steps to clone the repository and start the development server:

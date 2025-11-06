@@ -17,10 +17,10 @@ interface HeaderProps {
 
 export default function Header({ lang, navItems }: HeaderProps) {
   return (
-    <div className="fixed top-0 left-0 right-0 supports-backdrop-blur:bg-background/60 border-b bg-[#FAFAFA] dark:border-[#2a3b50] backdrop-blur z-50 dark:bg-[#0a1c38]">
+    <div className="fixed top-0 left-0 right-0 supports-backdrop-blur:bg-background/60 border-b border-slate-200/80 dark:border-[#2a3b50] backdrop-blur z-50 bg-white/80 dark:bg-[#0a1c38]/95">
       <nav className="h-16 flex items-center justify-between px-5">
         <div className="flex gap-3 items-center">
-          <div className={cn("block")}>
+          <div className={cn("block hover:text-blue-600 transition-colors")}>
             <MobileSidebar navItems={navItems} />
           </div>
 

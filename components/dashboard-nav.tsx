@@ -57,10 +57,10 @@ export function DashboardNav({ _items, setOpen }: DashboardNavProps) {
                 >
                   <span
                     className={cn(
-                      "text-start items-center flex w-full h-12 px-3 mb-1 rounded-md transition-colors duration-150 gap-2",
-                      path === link.href || (path?.includes(link.href) && link.href !== "/dashboard")
-                        ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 shadow-sm border-r-4 border-blue-600"
-                        : "hover:bg-blue-50 dark:hover:bg-blue-900/10 hover:text-blue-700"
+                    "text-start items-center flex w-full h-12 px-3 mb-1 rounded-md transition-all duration-200 gap-2",
+                    path === link.href || (path?.includes(link.href) && link.href !== "/dashboard")
+                      ? "bg-blue-50/80 dark:bg-blue-900/20 text-blue-700 shadow-sm border-r-4 border-blue-600/90 font-medium"
+                      : "hover:bg-blue-50/50 dark:hover:bg-blue-900/10 hover:text-blue-600 hover:translate-x-0.5"
                     )}
                   >
                     <Icon className="mx-2 h-4 w-4 text-gray-600 dark:text-blue-300" />
@@ -108,10 +108,10 @@ export function DashboardNav({ _items, setOpen }: DashboardNavProps) {
                           setOpen && setOpen(false);
                         }}
                         className={cn(
-                            "flex gap-1 items-center rounded-md transition-colors duration-150 w-full h-12 px-3 mt-2",
-                            isActive
-                              ? "items-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 shadow-inner border-r-4 border-blue-600"
-                              : "hover:bg-blue-50 dark:hover:bg-blue-900/10 text-gray-600 dark:text-blue-400"
+                          "flex gap-1 items-center rounded-md transition-all duration-200 w-full h-12 px-3 mt-2",
+                          isActive
+                            ? "items-center bg-blue-50/80 dark:bg-blue-900/20 text-blue-700 shadow-inner border-r-4 border-blue-600/90 font-medium"
+                            : "hover:bg-blue-50/50 dark:hover:bg-blue-900/10 text-gray-600 dark:text-blue-400 hover:text-blue-600 hover:translate-x-0.5"
                           )}
                       >
                         <Icon className="w-5 h-5 text-sm" />
