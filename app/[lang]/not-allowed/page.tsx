@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 export default function NotAllowedPage() {
   const params = useParams();
   const lang = params.lang;
-  const t = useTranslations("pages.notAllowed");
+  const t = useTranslations("notAllowed");
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
