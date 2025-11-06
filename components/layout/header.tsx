@@ -17,33 +17,31 @@ interface HeaderProps {
 
 export default function Header({ lang, navItems }: HeaderProps) {
   return (
-    <div className="fixed top-0 left-0 right-0 supports-backdrop-blur:bg-background/60 border-b bg-[#FAFAFA] dark:border-[#2a3b50]  backdrop-blur z-50 dark:bg-[#0a1c38]">
-      <nav className="h-14 flex items-center justify-between px-4">
-        <div className="flex gap-2 items-center">
-        <div className={cn("block")}>
-          <MobileSidebar navItems={navItems} />
-        </div>
-        <div>
+    <div className="fixed top-0 left-0 right-0 supports-backdrop-blur:bg-background/60 border-b bg-[#FAFAFA] dark:border-[#2a3b50] backdrop-blur z-50 dark:bg-[#0a1c38]">
+      <nav className="h-16 flex items-center justify-between px-5">
+        <div className="flex gap-3 items-center">
+          <div className={cn("block")}>
+            <MobileSidebar navItems={navItems} />
+          </div>
 
+          <div className="-ml-1">
             <Image
-              width={125}
-              height={41}
+              width={140}
+              height={42}
               src={lang=="en"?Logo_en:Logo_ar}
               alt="Logo"
               priority
-              style={{ padding: 0, margin: "0 -5px", }}
+              style={{ padding: 0, margin: "0 -5px" }}
             />
-
-        </div>
-
+          </div>
         </div>
 
         <div className="flex items-center gap-3">
-          {/*Lang toggle */}
-          <UserNav lang={lang} />
-          <LocaleSwitcher lang={lang} />
-          {/* <ThemeToggle /> */}
-          <ModeToggle />
+          <div className="flex items-center gap-2 p-1 rounded-md">
+            <UserNav lang={lang} />
+            <LocaleSwitcher lang={lang} />
+            <ModeToggle />
+          </div>
         </div>
       </nav>
     </div>

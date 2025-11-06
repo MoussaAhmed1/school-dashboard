@@ -48,29 +48,25 @@ export function DashboardNav({ _items, setOpen }: DashboardNavProps) {
           return (
             link.href && (
               <Link
-                key={index}
-                href={link.disabled ? "/" : `/${currentLang}${link.href}?currentLable=undefined`}
-                onClick={() => {
-                  setselectedLable(undefined);
-                  setOpen && setOpen(false);
-                }}
-              >
-                <span
-                  className={cn(
-                    "hover:text-blue-700 hover:no-underline text-start items-center flex w-full h-12 px-1 mb-1  ",
-                    path === link.href || (path?.includes(link.href) && link.href !== "/dashboard")
-                      ? "items-center w-full h-12 px-1 mb-1 bg-blue-200  text-blue-700"
-                      : " hover:bg-blue-200"
-                  )}
-                // style={{
-                //   color:path === `/${currentLang}${link.href}` ?"blue":"unset",
-                //   backgroundColor:path === `/${currentLang}${link.href}` ?"#DBEAFE":"unset",
-                // }}
+                  key={index}
+                  href={link.disabled ? "/" : `/${currentLang}${link.href}?currentLable=undefined`}
+                  onClick={() => {
+                    setselectedLable(undefined);
+                    setOpen && setOpen(false);
+                  }}
                 >
-                  <Icon className="mx-2 h-4 w-4" />
-                  <span className="text-nowrap flex-grow text-sm font-semibold ">{t(link.label)}</span>
-                </span>
-              </Link>
+                  <span
+                    className={cn(
+                      "text-start items-center flex w-full h-12 px-3 mb-1 rounded-md transition-colors duration-150 gap-2",
+                      path === link.href || (path?.includes(link.href) && link.href !== "/dashboard")
+                        ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 shadow-sm border-r-4 border-blue-600"
+                        : "hover:bg-blue-50 dark:hover:bg-blue-900/10 hover:text-blue-700"
+                    )}
+                  >
+                    <Icon className="mx-2 h-4 w-4 text-gray-600 dark:text-blue-300" />
+                    <span className="text-nowrap flex-grow text-sm font-semibold ">{t(link.label)}</span>
+                  </span>
+                </Link>
             )
           );
         } else {
@@ -112,11 +108,11 @@ export function DashboardNav({ _items, setOpen }: DashboardNavProps) {
                           setOpen && setOpen(false);
                         }}
                         className={cn(
-                          " flex gap-1 items-center",
-                          isActive
-                            ? "flex items-center w-full h-12 px-3 mt-2 bg-blue-200 rounded text-blue-700"
-                            : "flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-blue-200 text-gray-600 dark:text-blue-400"
-                        )}
+                            "flex gap-1 items-center rounded-md transition-colors duration-150 w-full h-12 px-3 mt-2",
+                            isActive
+                              ? "items-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 shadow-inner border-r-4 border-blue-600"
+                              : "hover:bg-blue-50 dark:hover:bg-blue-900/10 text-gray-600 dark:text-blue-400"
+                          )}
                       >
                         <Icon className="w-5 h-5 text-sm" />
                         <span className="ms-1 text-sm font-semibold">

@@ -29,10 +29,10 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
           href={item.href}
           className={cn(
             buttonVariants({ variant: "ghost" }),
-            (pathname === `${item.href}` )
-              ? "bg-muted hover:bg-muted"
-              : "hover:bg-transparent hover:underline",
-            "justify-start"
+            "justify-start items-center rounded-md px-3 py-2 text-sm transition-colors duration-150 ease-in-out",
+            (pathname === `${item.href}`)
+              ? "bg-slate-100 dark:bg-[#06202f] text-blue-700 shadow-sm border-r-4 border-blue-600"
+              : "hover:bg-slate-50 dark:hover:bg-[#071726] hover:text-blue-700",
           )}
         >
           {item.title}
