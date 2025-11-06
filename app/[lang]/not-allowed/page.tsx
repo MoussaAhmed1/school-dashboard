@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button";
 import { AlertTriangle, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function NotAllowedPage() {
   const params = useParams();
   const lang = params.lang;
+  const t = useTranslations("pages.notAllowed");
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
@@ -16,19 +18,18 @@ export default function NotAllowedPage() {
         </div>
 
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          Access Denied
+          {t("title")}
         </h1>
 
         <p className="text-gray-600 dark:text-gray-300 mb-8">
-          You don&apos;t have permission to access this page. Please contact your
-          administrator if you believe this is an error.
+          {t("description")}
         </p>
 
         <div className="space-y-4">
           <Link href={`/${lang}/dashboard/pending-requests`}>
             <Button className="w-full">
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Go to Dashboard
+              {t("goToDashboard")}
             </Button>
           </Link>
 
@@ -37,7 +38,7 @@ export default function NotAllowedPage() {
             className="w-full"
             onClick={() => window.history.back()}
           >
-            Go Back
+            {t("goBack")}
           </Button>
         </div>
       </div>

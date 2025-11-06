@@ -494,6 +494,12 @@
       }
     }
   },
+    "notAllowed": {
+    "title": "غير مسموح",
+    "description": "ليس لديك إذن للوصول إلى هذه الصفحة.",
+    "goToDashboard": "الذهاب إلى لوحة التحكم",
+    "goBack": "العودة"
+  },
   "auth": {
     "signin": "Anmeldung",
     "signout": "Ausloggen"
